@@ -19,12 +19,13 @@ const CheckoutSummary = () => {
       {isOrderOpen ? (
         <CheckoutSummaryContent>
           <ButtonWrapper onClick={handleClick}>
-            <IconButton
-              IconComponent={WShoppingCart}
-              ariaLabel="shoppoing cart"
-            />
+            <IconButton aria-label="shoppoing cart">
+              <WShoppingCart />
+            </IconButton>
             Show order summary
-            <IconButton IconComponent={ChevronUp} ariaLabel="chevron up" />
+            <IconButton aria-label="chevron up">
+              <ChevronUp />
+            </IconButton>
           </ButtonWrapper>
           <CartItemCardList hasTextButton={false} />
           <CartTotalPriceCard>Total</CartTotalPriceCard>
@@ -33,15 +34,13 @@ const CheckoutSummary = () => {
         <CheckoutSummaryContent>
           <CartTotalPriceCard>
             <ButtonWrapper onClick={handleClick}>
-              <IconButton
-                IconComponent={WShoppingCart}
-                ariaLabel="shoppoing cart"
-              />
+              <IconButton aria-label="shoppoing cart">
+                <WShoppingCart />
+              </IconButton>
               Show order summary
-              <IconButton
-                IconComponent={ChevronDown}
-                ariaLabel="chevron down"
-              />
+              <IconButton aria-label="chevron down">
+                <ChevronDown />
+              </IconButton>
             </ButtonWrapper>
           </CartTotalPriceCard>
         </CheckoutSummaryContent>

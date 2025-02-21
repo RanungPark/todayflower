@@ -23,11 +23,12 @@ const Stepper = ({
     <StepperWrapper>
       <IconButton
         onClick={onClickMinus}
-        IconComponent={Minus}
-        size="large"
-        ariaLabel="minusBtn"
+        size="lg"
+        aria-label="minusBtn"
         testId="minusBtn"
-      />
+      >
+        <Minus />
+      </IconButton>
       <Input
         readOnly
         value={value}
@@ -37,11 +38,12 @@ const Stepper = ({
       />
       <IconButton
         onClick={onClickPlus}
-        IconComponent={Add}
-        size="large"
-        ariaLabel="plusBtn"
+        size="lg"
+        aria-label="plusBtn"
         testId="plusBtn"
-      />
+      >
+        <Add />
+      </IconButton>
     </StepperWrapper>
   );
 };

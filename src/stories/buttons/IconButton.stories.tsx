@@ -13,23 +13,22 @@ const meta = {
   tags: ['autodocs'],
 
   argTypes: {
-    IconComponent: {
-      control: 'object',
+    children: {
       description: 'SVG 컴포넌트',
-      defaultValue: ArrowLeft,
+      defaultValue: <ArrowLeft />,
     },
     size: {
       control: {
         type: 'select',
-        options: ['small', 'medium', 'large'],
+        options: ['sm', 'md', 'lg'],
       },
       description: 'Icon 크기',
-      defaultValue: 'small',
+      defaultValue: 'sm',
     },
     onClick: {
       description: 'IconButton 클릭 이벤트',
     },
-    ariaLabel: {
+    'aria-label': {
       control: 'text',
       description: 'IconButton 접근자 이름',
     },
@@ -42,24 +41,24 @@ type Story = StoryObj<typeof meta>;
 
 export const SmallSize: Story = {
   args: {
-    size: 'small',
-    IconComponent: ArrowLeft,
-    ariaLabel: 'left arrow',
+    size: 'sm',
+    children: <ArrowLeft />,
+    'aria-label': 'left arrow',
   },
 };
 
 export const MediumSize: Story = {
   args: {
-    size: 'medium',
-    IconComponent: ArrowLeft,
-    ariaLabel: 'left arrow',
+    size: 'md',
+    children: <ArrowLeft />,
+    'aria-label': 'left arrow',
   },
 };
 
 export const LargeSize: Story = {
   args: {
-    size: 'large',
-    IconComponent: ArrowLeft,
-    ariaLabel: 'left arrow',
+    size: 'lg',
+    children: <ArrowLeft />,
+    'aria-label': 'left arrow',
   },
 };

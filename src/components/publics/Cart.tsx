@@ -43,12 +43,9 @@ const Cart = ({ open, setOpen }: CartProps) => {
     <CartWrapper>
       <CartHeaderWrapper>
         Shopping Cart
-        <IconButton
-          IconComponent={WClose}
-          size="medium"
-          onClick={handleClose}
-          ariaLabel="close"
-        />
+        <IconButton size="md" onClick={handleClose} aria-label="close">
+          <WClose />
+        </IconButton>
       </CartHeaderWrapper>
       <CartMainWrapper>
         {carts.length === 0 ? (

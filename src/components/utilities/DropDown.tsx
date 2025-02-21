@@ -54,17 +54,16 @@ const DropDown = ({
           onClick={handleIsOpen}
         />
         {isOpen ? (
-          <IconButton
-            onClick={(e) => e.preventDefault()}
-            IconComponent={CaretUp}
-            ariaLabel="caret up"
-          />
+          <IconButton onClick={(e) => e.preventDefault()} aria-label="caret up">
+            <CaretUp />
+          </IconButton>
         ) : (
           <IconButton
             onClick={(e) => e.preventDefault()}
-            IconComponent={CaretDown}
-            ariaLabel="caret down"
-          />
+            aria-label="caret down"
+          >
+            <CaretDown />
+          </IconButton>
         )}
       </DropDownLabel>
       {isOpen ? (

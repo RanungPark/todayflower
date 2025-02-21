@@ -27,12 +27,9 @@ const CompleteTextFiled = ({
         {children}
       </Contents>
       {!disabled && (
-        <IconButton
-          onClick={onClick}
-          IconComponent={WEdit}
-          ariaLabel="edit"
-          testId={buttonTestId}
-        />
+        <IconButton onClick={onClick} aria-label="edit" testId={buttonTestId}>
+          <WEdit />
+        </IconButton>
       )}
     </CompleteTextFiledWrapper>
   );
