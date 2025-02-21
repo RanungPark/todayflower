@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import { ReactComponent as WClose } from '@assets/icons/wght400/WClose.svg';
 import IconButton from '@components/buttons/IconButton';
@@ -28,14 +27,14 @@ const BurgerMenu = ({ open, setOpen }: BurgerMenuProps) => {
             <WClose />
           </IconButton>
         </BurgerMenuCloseButtonWrapper>
-        {menuDatas.map(({ to, children }) => (
-          <MenuButton to={to} onClick={handleClose} key={uuidv4()}>
+        {menuDatas.map(({ id, to, children }) => (
+          <MenuButton to={to} onClick={handleClose} key={id}>
             {children}
           </MenuButton>
         ))}
         <TextButtonList>
-          {aboutDatas.map((children) => (
-            <TextButton key={uuidv4()} onClick={pageWait}>
+          {aboutDatas.map((children, index) => (
+            <TextButton key={`${children}_${index}`} onClick={pageWait}>
               {children}
             </TextButton>
           ))}

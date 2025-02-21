@@ -1,16 +1,15 @@
-import { Link, To } from 'react-router-dom';
+import { Link, LinkProps, To } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface MenuButtonProps {
-  to: To;
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  children: string;
+interface MenuButtonProps extends LinkProps {
+  children: React.ReactNode;
   testId?: string;
+  to: To;
 }
 
-const MenuButton = ({ to, onClick, children, testId }: MenuButtonProps) => {
+const MenuButton = ({ children, testId, to, ...props }: MenuButtonProps) => {
   return (
-    <MenuButtonWrapper to={to} onClick={onClick} data-cy={testId}>
+    <MenuButtonWrapper to={to} data-cy={testId} {...props}>
       {children}
     </MenuButtonWrapper>
   );
