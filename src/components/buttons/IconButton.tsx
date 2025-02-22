@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { mixins } from '@styles/Mixin';
-import { ButtonSize } from 'src/@types/button';
+import { Size } from 'src/@types/common';
 
-import { sizeStyles } from './styles';
+import { IconButtonSizeStyles } from './styles';
 
 interface IconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: ButtonSize;
+  size?: Size;
   testId?: string;
   children: React.ReactNode;
 }
@@ -26,9 +26,10 @@ const IconButton = ({
   );
 };
 
-const IconButtonWrapper = styled.button<{ $size: ButtonSize }>`
+const IconButtonWrapper = styled.nav<{ $size: Size }>`
   ${mixins.flexBox({})}
-  ${({ $size }) => sizeStyles[$size]}
+  ${({ $size }) => IconButtonSizeStyles[$size]}
+  cursor: pointer;
 `;
 
 export default IconButton;

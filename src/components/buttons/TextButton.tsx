@@ -1,66 +1,40 @@
+import React from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowLeft } from '@assets/icons/wght300/ArrowLeft.svg';
-import { ReactComponent as ArrowRight } from '@assets/icons/wght300/ArrowRight.svg';
 import { mixins } from '@styles/Mixin';
 
-interface TextButtonProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  children: string;
+import RenderIcon from './components/RenderIcon';
+
+interface TextButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
   hasLeftIcon?: boolean;
   hasRightIcon?: boolean;
   CustomButton?: React.FC<React.SVGProps<SVGSVGElement>>;
-  disabled?: boolean;
-  ariaLabel?: string;
   testId?: string;
 }
 
 const TextButton = ({
-  onClick,
   children,
   hasLeftIcon = false,
   hasRightIcon = false,
   CustomButton,
-  disabled = false,
-  ariaLabel,
   testId,
+  ...props
 }: TextButtonProps) => {
-  const renderIcon = (position: 'left' | 'right') => {
-    if (position === 'left') {
-      return renderLeftIcon();
-    } else if (position === 'right') {
-      return renderRightIcon();
-    }
-    return null;
-  };
-
-  const renderLeftIcon = () => {
-    if (hasLeftIcon) {
-      return CustomButton && ariaLabel ? (
-        <CustomButton aria-label={ariaLabel} />
-      ) : (
-        <ArrowLeft aria-label="left arrow" />
-      );
-    }
-    return null;
-  };
-
-  const renderRightIcon = () => {
-    if (hasRightIcon) {
-      return CustomButton && ariaLabel ? (
-        <CustomButton aria-label={ariaLabel} />
-      ) : (
-        <ArrowRight aria-label="right arrow" />
-      );
-    }
-    return null;
-  };
-
   return (
-    <TextButtonWrapper onClick={onClick} disabled={disabled} data-cy={testId}>
-      {renderIcon('left')}
+    <TextButtonWrapper data-cy={testId} {...props}>
+      <RenderIcon
+        hasLeftIcon={hasLeftIcon}
+        hasRightIcon={false}
+        CustomButton={CustomButton}
+      />
       {children}
-      {renderIcon('right')}
+      <RenderIcon
+        hasLeftIcon={false}
+        hasRightIcon={hasRightIcon}
+        CustomButton={CustomButton}
+      />
     </TextButtonWrapper>
   );
 };

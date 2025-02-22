@@ -1,206 +1,54 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { ReactComponent as ArrowLeft } from '@assets/icons/wght300/ArrowLeft.svg';
-import { ReactComponent as ArrowRight } from '@assets/icons/wght300/ArrowRight.svg';
 import { mixins } from '@styles/Mixin';
+import { Variant } from 'src/@types/common';
 
-type PrimaryButtontheme = 'primary' | 'secondary' | 'tertiary';
+import RenderIcon from './components/RenderIcon';
+import { PrimaryButtonVariantStyles } from './styles';
 
-interface PrimaryButtonProps {
-  primaryButtontheme?: PrimaryButtontheme;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  children: string;
+interface PrimaryButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  variant?: Variant;
   hasLeftIcon?: boolean;
   hasRightIcon?: boolean;
   CustomButton?: React.FC<React.SVGProps<SVGSVGElement>>;
-  disabled?: boolean;
-  ariaLabel?: string;
   testId?: string;
 }
 
 const PrimaryButton = ({
-  onClick,
   children,
-  primaryButtontheme = 'primary',
+  variant = 'primary',
   hasLeftIcon = false,
   hasRightIcon = false,
   CustomButton,
-  disabled = false,
-  ariaLabel,
   testId,
+  ...props
 }: PrimaryButtonProps) => {
-  const renderIcon = (position: 'left' | 'right') => {
-    if (position === 'left') {
-      return renderLeftIcon();
-    } else if (position === 'right') {
-      return renderRightIcon();
-    }
-    return null;
-  };
-
-  const renderLeftIcon = () => {
-    if (hasLeftIcon) {
-      return CustomButton && ariaLabel ? (
-        <CustomButton aria-label={ariaLabel} />
-      ) : (
-        <ArrowLeft aria-label="left arrow" />
-      );
-    }
-    return null;
-  };
-
-  const renderRightIcon = () => {
-    if (hasRightIcon) {
-      return CustomButton && ariaLabel ? (
-        <CustomButton aria-label={ariaLabel} />
-      ) : (
-        <ArrowRight aria-label="right arrow" />
-      );
-    }
-    return null;
-  };
-
   return (
-    <PrimaryButtonWrapper
-      primaryButtontheme={primaryButtontheme}
-      onClick={onClick}
-      disabled={disabled}
-      data-cy={testId}
-    >
-      {renderIcon('left')}
+    <PrimaryButtonWrapper $variant={variant} data-cy={testId} {...props}>
+      <RenderIcon
+        hasLeftIcon={hasLeftIcon}
+        hasRightIcon={false}
+        CustomButton={CustomButton}
+      />
       {children}
-      {renderIcon('right')}
+      <RenderIcon
+        hasLeftIcon={false}
+        hasRightIcon={hasRightIcon}
+        CustomButton={CustomButton}
+      />
     </PrimaryButtonWrapper>
   );
 };
 
-const buttonStyles = {
-  primary: css`
-    background-color: ${({ theme }) => theme.colors.black};
-
-    color: ${({ theme }) => theme.colors.white};
-
-    & path {
-      fill: ${({ theme }) => theme.colors.white};
-    }
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.darkgray};
-    }
-
-    &:active {
-      background-color: ${({ theme }) => theme.colors.black};
-    }
-
-    &:disabled {
-      background-color: ${({ theme }) => theme.colors.lightgray};
-
-      color: ${({ theme }) => theme.colors.gray};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.gray};
-      }
-    }
-  `,
-  secondary: css`
-    border: 1px solid ${({ theme }) => theme.colors.black};
-
-    background-color: ${({ theme }) => theme.colors.white};
-
-    color: ${({ theme }) => theme.colors.black};
-
-    & path {
-      fill: ${({ theme }) => theme.colors.black};
-    }
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.black};
-
-      color: ${({ theme }) => theme.colors.white};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.white};
-      }
-    }
-
-    &:active {
-      border: 1px solid ${({ theme }) => theme.colors.black};
-
-      background-color: ${({ theme }) => theme.colors.white};
-
-      color: ${({ theme }) => theme.colors.black};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.black};
-      }
-    }
-
-    &:disabled {
-      border: 1px solid ${({ theme }) => theme.colors.gray};
-
-      background-color: ${({ theme }) => theme.colors.white};
-
-      color: ${({ theme }) => theme.colors.gray};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.gray};
-      }
-    }
-  `,
-  tertiary: css`
-    border: 1px solid ${({ theme }) => theme.colors.white};
-
-    background-color: inherit;
-
-    color: ${({ theme }) => theme.colors.white};
-
-    & path {
-      fill: ${({ theme }) => theme.colors.white};
-    }
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.white};
-
-      color: ${({ theme }) => theme.colors.black};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.black};
-      }
-    }
-
-    &:active {
-      background-color: ${({ theme }) => theme.colors.white};
-
-      color: ${({ theme }) => theme.colors.black};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.black};
-      }
-    }
-
-    &:disabled {
-      border: 1px solid ${({ theme }) => theme.colors.lightgray};
-
-      background-color: inherit;
-
-      color: ${({ theme }) => theme.colors.gray};
-
-      & path {
-        fill: ${({ theme }) => theme.colors.gray};
-      }
-    }
-  `,
-};
-
-const PrimaryButtonWrapper = styled.button.withConfig({
-  shouldForwardProp: (prop) => prop !== 'primaryButtontheme',
-})<{
-  primaryButtontheme: PrimaryButtontheme;
+const PrimaryButtonWrapper = styled.button<{
+  $variant: Variant;
 }>`
   ${mixins.flexBox({})}
   ${({ theme }) => theme.typography.Button}
-  ${({ primaryButtontheme }) =>
-    buttonStyles[primaryButtontheme] || buttonStyles.primary}
+  ${({ $variant }) =>
+    PrimaryButtonVariantStyles[$variant] || PrimaryButtonVariantStyles.primary}
   gap: 8px;
 
   width: 100%;

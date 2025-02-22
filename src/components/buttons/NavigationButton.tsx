@@ -1,48 +1,35 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { mixins } from '@styles/Mixin';
 
-interface NavigationButtonProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  children?: string;
+interface NavigationButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode;
   hasIcon?: boolean;
   IconComponent?: React.FC<React.SVGProps<SVGSVGElement>>;
-  ariaLabel?: string;
   testId?: string;
 }
 
-type NavigationButtonWrapperProps = Pick<NavigationButtonProps, 'hasIcon'>;
-
 const NavigationButton = ({
-  onClick,
   children,
   hasIcon = false,
   IconComponent,
-  ariaLabel,
   testId,
+  ...props
 }: NavigationButtonProps) => {
   return (
-    <NavigationButtonWrapper
-      onClick={onClick}
-      hasIcon={hasIcon}
-      data-cy={testId}
-    >
-      {hasIcon && IconComponent && ariaLabel ? (
-        <IconComponent aria-label={ariaLabel} />
-      ) : (
-        children
-      )}
+    <NavigationButtonWrapper $hasIcon={hasIcon} data-cy={testId} {...props}>
+      {hasIcon && IconComponent ? <IconComponent /> : children}
     </NavigationButtonWrapper>
   );
 };
 
-const NavigationButtonWrapper = styled.button.withConfig({
-  shouldForwardProp: (prop) => prop !== 'hasIcon',
-})<NavigationButtonWrapperProps>`
+const NavigationButtonWrapper = styled.button<{ $hasIcon?: boolean }>`
   ${mixins.flexBox({})};
   ${({ theme }) => theme.typography.Links};
-  ${({ hasIcon }) =>
-    hasIcon
+  ${({ $hasIcon }) =>
+    $hasIcon
       ? css`
           padding: 16px;
         `
