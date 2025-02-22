@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import DefaultTextField from '@components/textfields/DefaultTextField';
 import { loginDone } from '@constants/toast';
-import { loginStateType } from '@pages/LoginPage';
+import { loginStateType } from '@pages/login';
 import { useUserStore } from '@store/userStore';
 import { mixins } from '@styles/Mixin';
 import { fetchJoin } from '@utils/api';

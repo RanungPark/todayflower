@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 import LoginPasswordForm from '@components/forms/LoginPasswordForm';
 import CompleteTextFiled from '@components/textfields/CompleteTextFiled';
-import { loginStateType } from '@pages/LoginPage';
 import { FormStateType } from 'src/@types/state';
+
+import { loginStateType } from '..';
 
 interface LoginPasswordProps {
   loginState: FormStateType;

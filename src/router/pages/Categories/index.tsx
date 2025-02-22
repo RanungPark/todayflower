@@ -9,14 +9,14 @@ import { fetchCategory } from '@utils/api';
 import { imgOptimization } from '@utils/img';
 import { ProductType, ProductBgType } from 'src/@types/product';
 
-import CategoryLoading from './sections/CategoryLoading';
+import CategoryLoading from './components/CategoryLoading';
 
 interface ICategory {
   products: ProductType[];
   productBg: ProductBgType;
 }
 
-const CategoryPage = () => {
+const Category = () => {
   const { categoryName } = useParams();
   const navigate = useNavigate();
 
@@ -74,4 +74,4 @@ const CategoryCardList = styled.section`
   }
 `;
 
-export default CategoryPage;
+export default Category;

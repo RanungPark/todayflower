@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import DefaultTextField from '@components/textfields/DefaultTextField';
 import { REG_PHONE } from '@constants/reg';
-import { loginStateType } from '@pages/LoginPage';
+import { loginStateType } from '@pages/login';
 import { mixins } from '@styles/Mixin';
 import { fetchLogin } from '@utils/api';
 

@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
-import LoginId from '@pages/sections/LoginId';
-import LoginPassword from '@pages/sections/LoginPassword';
 import { useUserStore } from '@store/userStore';
 import { mixins } from '@styles/Mixin';
 import { FormStateType } from 'src/@types/state';
 
+import LoginId from './components/LoginId';
+import LoginPassword from './components/LoginPassword';
+
 export type loginStateType = 'signin' | 'join' | 'signup' | 'done';
 
-const LoginPage = () => {
+const Login = () => {
   const [loginCurrState, setLoginCurrState] =
     useState<loginStateType>('signin');
   const [loginIdState, setLoginIdState] = useState<FormStateType>('curr');
@@ -112,4 +113,4 @@ const LoginPageWrapper = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.black};
 `;
 
-export default LoginPage;
+export default Login;

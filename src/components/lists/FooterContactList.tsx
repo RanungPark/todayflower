@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import FooterContactItem from '@components/texts/FooterContactItem';
 import FooterInfoTittle from '@components/texts/FooterInfoTittle';
-import { FooterContactItemType } from '@pages/sections/FooterContact';
+import { FooterContactItemType } from '@router/layout/Footer/components/FooterContact';
 
 interface FooterContactListProps {
   children: string;

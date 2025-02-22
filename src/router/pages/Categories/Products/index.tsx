@@ -8,14 +8,14 @@ import ProductInfo from '@components/texts/ProductInfo';
 import ImgCarousel from '@components/utilities/ImgCarousel';
 import Stepper from '@components/utilities/Stepper';
 import { addToCart } from '@constants/toast';
-import OuterProducts from '@pages/sections/OuterProducts';
 import { useCartStore } from '@store/cartStore';
 import { mixins } from '@styles/Mixin';
 import { fetchProduct } from '@utils/api';
 import { imgOptimization } from '@utils/img';
 import { ProductType } from 'src/@types/product';
 
-import ProductsLoading from './sections/ProductsLoading';
+import OuterProducts from './components/OuterProducts';
+import ProductsLoading from './components/ProductsLoading';
 
 interface IProduct {
   product: ProductType;
@@ -23,7 +23,7 @@ interface IProduct {
   outerProducts: ProductType[];
 }
 
-const ProductsPage = () => {
+const Products = () => {
   const { categoryName, productId } = useParams();
   const navigate = useNavigate();
   const { addItem } = useCartStore();
@@ -151,4 +151,4 @@ const CarouselWrapper = styled.div`
   width: 100%;
 `;
 
-export default ProductsPage;
+export default Products;

@@ -5,10 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ActionCardAndImageCardList from '@components/lists/ActionCardAndImageCardList';
 import { shopDatas } from '@data/shopDatas';
-import HomeAbout from '@pages/sections/HomeAbout';
-import HomeMain from '@pages/sections/HomeMain';
 
-const HomePage = () => {
+import HomeAbout from './components/HomeAbout';
+import HomeMain from './components/HomeMain';
+
+const Home = () => {
   const navigate = useNavigate();
 
   const handleShopClick = (url: string) => {
@@ -42,4 +43,4 @@ const HomePage = () => {
 
 const HomePageWrapper = styled.main``;
 
-export default HomePage;
+export default Home;

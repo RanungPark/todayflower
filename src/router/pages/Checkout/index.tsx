@@ -10,12 +10,12 @@ import {
   checkout2ndStepDatas,
   checkout3rdStepDatas,
 } from '@data/inputDatas';
-import CheckoutSummary from '@pages/sections/CheckoutSummary';
 import { useCartStore } from '@store/cartStore';
 import { mixins } from '@styles/Mixin';
 import { FormStateType } from 'src/@types/state';
 
-import CheckoutStep from './sections/CheckoutStep';
+import CheckoutStep from './components/CheckoutStep';
+import CheckoutSummary from './components/CheckoutSummary';
 
 type CheckoutStepsState = {
   first: FormStateType;
@@ -23,7 +23,7 @@ type CheckoutStepsState = {
   third: FormStateType;
 };
 
-const CheckoutPage = () => {
+const Checkout = () => {
   const [stepsState, setStepsState] = useState<CheckoutStepsState>({
     first: 'curr',
     second: 'yet',
@@ -136,4 +136,4 @@ const BreadCrumbWrapper = styled.div`
   padding: 40px 0 0 80px;
 `;
 
-export default CheckoutPage;
+export default Checkout;
