@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
-import DefaultTextField from '@components/textfields/DefaultTextField';
+import InputFiled from '@components/inputField';
 import { REG_EMAIL } from '@constants/reg';
 import { subscriptionDone, subscriptionFail } from '@constants/toast';
 import { useUserStore } from '@store/userStore';
@@ -12,7 +12,7 @@ interface FooterRemindForm {
 }
 
 const FooterRemind = () => {
-  const { register, handleSubmit, reset } = useForm<FooterRemindForm>();
+  const methods = useForm<FooterRemindForm>();
   const { isLoggedIn, setSubscribe } = useUserStore();
 
   const handleSubscription = ({ remind }: FooterRemindForm) => {
@@ -33,26 +33,22 @@ const FooterRemind = () => {
 
     subscriptionDone(remind);
     setSubscribe(true);
-    reset({ remind: '' });
+    methods.reset({ remind: '' });
   };
 
   return (
     <FooterRemindWrapper>
-      <Sentence>
+      <p>
         오늘의 꽃을 통해 발렌타인데이, 어버이날, 크리스마스...에서 아름다운 꽃을
         제공하는 것을 잊지 마세요... 7일 전에 알려드립니다. 스팸 또는 주소 공유
         금지
-      </Sentence>
-      <FooterRemindForm onSubmit={handleSubmit(handleSubscription)}>
-        <DefaultTextField>
-          <Input
-            placeholder="Your Email"
-            {...register('remind')}
-            aria-label="remind"
-          />
-        </DefaultTextField>
-        <PrimaryButton onClick={() => {}}>remind</PrimaryButton>
-      </FooterRemindForm>
+      </p>
+      <FormProvider {...methods}>
+        <FooterRemindForm onSubmit={methods.handleSubmit(handleSubscription)}>
+          <InputFiled input={{ id: 'remind', placeholder: 'Your Email' }} />
+          <PrimaryButton onClick={() => {}}>remind</PrimaryButton>
+        </FooterRemindForm>
+      </FormProvider>
     </FooterRemindWrapper>
   );
 };
@@ -70,10 +66,7 @@ const FooterRemindWrapper = styled.div`
 const FooterRemindForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 `;
-
-const Input = styled.input``;
-const Sentence = styled.p``;
 
 export default FooterRemind;
