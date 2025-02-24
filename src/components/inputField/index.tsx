@@ -1,26 +1,14 @@
-import React, { HTMLInputTypeAttribute } from 'react';
-import {
-  FieldValues,
-  Path,
-  RegisterOptions,
-  useFormContext,
-} from 'react-hook-form';
+import React from 'react';
+import { FieldValues, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { zIndex } from '@constants/zIndex';
 import { ValidationState } from 'src/@types/common';
+import { InputType } from 'src/@types/inputField';
 
 import HelpMessage from './components/HelpMessage';
+import Input from './components/Input';
 import Label from './components/Label';
-import Input from './Input';
-
-type InputType<T extends FieldValues> = {
-  id: Path<T>;
-  type?: HTMLInputTypeAttribute;
-  placeholder?: string;
-  option?: RegisterOptions<T>;
-  testId?: string;
-};
 
 interface InputFiledProps<T extends FieldValues> {
   input: InputType<T>;
@@ -29,7 +17,7 @@ interface InputFiledProps<T extends FieldValues> {
 }
 
 const InputFiled = <T extends FieldValues>({
-  input: { id, type = 'text', placeholder, option, testId },
+  input: { id, type = 'text', placeholder, option, testId, onChange },
   children,
   helpTestId,
 }: InputFiledProps<T>) => {
@@ -56,6 +44,11 @@ const InputFiled = <T extends FieldValues>({
         validationState={validationState}
         {...register(id, {
           ...option,
+          onChange: (e) => {
+            if (onChange) {
+              onChange(e);
+            }
+          },
         })}
         onKeyDown={(e) => {
           if (e.key === 'Enter') e.preventDefault();

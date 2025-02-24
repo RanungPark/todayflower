@@ -1,5 +1,5 @@
-import React, { HTMLInputTypeAttribute } from 'react';
-import { RegisterOptions, useFormContext } from 'react-hook-form';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
@@ -7,6 +7,7 @@ import PrimaryButton from '@components/buttons/PrimaryButton';
 import InputFiled from '@components/inputField';
 import { loginDone } from '@constants/toast';
 import { useLoginStep } from '@contexts/LoginStepContext';
+import { passwordInputData } from '@data/login';
 import useJoinMutations from '@hooks/mutations/useJoinMutations';
 import { useUserStore } from '@store/userStore';
 import { mixins } from '@styles/Mixin';
@@ -53,7 +54,7 @@ const PasswordInputField = () => {
   return (
     <PasswordInputFieldStyled>
       <InputFiled<LoginFormDataType>
-        input={loginInputFiled}
+        input={passwordInputData}
         helpTestId="passwordHelp"
       >
         비밀번호를 입렵해주세요
@@ -63,22 +64,6 @@ const PasswordInputField = () => {
       </PrimaryButton>
     </PasswordInputFieldStyled>
   );
-};
-
-const loginInputFiled: {
-  id: keyof LoginFormDataType;
-  type?: HTMLInputTypeAttribute;
-  testId?: string;
-  placeholder?: string;
-  option?: RegisterOptions<LoginFormDataType>;
-} = {
-  id: 'password',
-  placeholder: '비밀번호를 입력해주세요',
-  type: 'password',
-  testId: 'passwordInput',
-  option: {
-    required: '비밀번호를 입력해주세요',
-  },
 };
 
 const PasswordInputFieldStyled = styled.form`

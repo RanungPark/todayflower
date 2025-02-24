@@ -1,11 +1,10 @@
-import { HTMLInputTypeAttribute } from 'react';
-import { RegisterOptions, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import InputFiled from '@components/inputField';
-import { REG_PHONE } from '@constants/reg';
 import { useLoginStep } from '@contexts/LoginStepContext';
+import { phoneNumInputData } from '@data/login';
 import useLoginIdMutations from '@hooks/mutations/useLoginIdMutations';
 import { mixins } from '@styles/Mixin';
 
@@ -42,7 +41,7 @@ const PhonNumInputField = () => {
   return (
     <PhonNumInputFieldStyled>
       <InputFiled<LoginFormDataType>
-        input={phoneNumInputFiled}
+        input={phoneNumInputData}
         helpTestId="phoneHelp"
       >
         휴대폰 번호를 사용하여 가입 또는 로그인하기
@@ -52,25 +51,6 @@ const PhonNumInputField = () => {
       </PrimaryButton>
     </PhonNumInputFieldStyled>
   );
-};
-
-const phoneNumInputFiled: {
-  id: keyof LoginFormDataType;
-  type?: HTMLInputTypeAttribute;
-  testId?: string;
-  placeholder?: string;
-  option?: RegisterOptions<LoginFormDataType>;
-} = {
-  id: 'phoneNum',
-  placeholder: '+82 XXX XXX XXX',
-  testId: 'phoneInput',
-  option: {
-    required: 'ID를 입력해주세요',
-    pattern: {
-      value: REG_PHONE,
-      message: `'-' 없이 전화번호를 입력해주세요.`,
-    },
-  },
 };
 
 const PhonNumInputFieldStyled = styled.form`
