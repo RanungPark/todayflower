@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import NavigationBar from '@router/layout/Header/components/NavigationBar';
+import NavigationBar from '@router/layout/header/components/NavigationBar';
 
 import BurgerMenu from './components/BurgerMenu';
 import Cart from './components/Cart';

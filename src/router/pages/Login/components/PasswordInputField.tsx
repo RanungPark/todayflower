@@ -12,7 +12,7 @@ import useJoinMutations from '@hooks/mutations/useJoinMutations';
 import { useUserStore } from '@store/userStore';
 import { mixins } from '@styles/Mixin';
 
-import { LoginFormDataType } from '../Forms';
+import { LoginFormDataType } from '../forms';
 
 const PasswordInputField = () => {
   const { trigger, getValues, setError } = useFormContext<LoginFormDataType>();

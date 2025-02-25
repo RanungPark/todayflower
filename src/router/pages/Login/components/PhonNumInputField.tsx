@@ -8,7 +8,7 @@ import { phoneNumInputData } from '@data/login';
 import useLoginIdMutations from '@hooks/mutations/useLoginIdMutations';
 import { mixins } from '@styles/Mixin';
 
-import { LoginFormDataType } from '../Forms';
+import { LoginFormDataType } from '../forms';
 
 const PhonNumInputField = () => {
   const { trigger, getValues } = useFormContext<LoginFormDataType>();

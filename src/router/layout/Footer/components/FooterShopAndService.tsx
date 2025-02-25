@@ -6,7 +6,7 @@ import TextButton from '@components/buttons/TextButton';
 import { pageWait } from '@constants/toast';
 import { serviceDatas } from '@data/button';
 import { shopDatas } from '@data/shop';
-import FooterInfoTittle from '@router/layout/Footer/components/FooterInfoTittle';
+import FooterInfoTittle from '@router/layout/footer/components/FooterInfoTittle';
 import { mixins } from '@styles/Mixin';
 
 const footerShopDatas = shopDatas.map(({ children, url }) => {

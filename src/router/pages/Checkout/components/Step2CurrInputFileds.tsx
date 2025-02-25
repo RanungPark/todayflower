@@ -7,7 +7,7 @@ import { useCheckoutStep } from '@contexts/CheckoutStepContext';
 import { SelectBox } from '@contexts/SelectBoxContext';
 import { Step2InputDatas } from '@data/checkout';
 
-import { CheckoutFormDataType } from '../Forms';
+import { CheckoutFormDataType } from '../forms';
 import { GroupedInputFields, StepCurrStyled } from '../styles';
 
 const Step2CurrInputFileds = () => {

@@ -8,7 +8,7 @@ import { useCheckoutStep } from '@contexts/CheckoutStepContext';
 import { Step3InputDatas } from '@data/checkout';
 import { useCartStore } from '@store/cartStore';
 
-import { CheckoutFormDataType } from '../Forms';
+import { CheckoutFormDataType } from '../forms';
 import { GroupedInputFields, StepCurrStyled } from '../styles';
 
 const Step3CurrInputFileds = () => {

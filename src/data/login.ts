@@ -1,5 +1,5 @@
 import { REG_PHONE } from '@constants/reg';
-import { LoginFormDataType } from '@router/pages/login/Forms';
+import { LoginFormDataType } from '@router/pages/login/forms';
 import { InputType } from 'src/@types/inputField';
 
 export const passwordInputData: InputType<LoginFormDataType> = {

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import { mixins } from '@styles/Mixin';
 
-import Step1 from './Steps/Step1';
-import Step2 from './Steps/Step2';
-import Step3 from './Steps/Step3';
+import Step1 from './steps/Step1';
+import Step2 from './steps/Step2';
+import Step3 from './steps/Step3';
 
 type CheckoutFormDataKey =
   | 'name'

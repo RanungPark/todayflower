@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { FooterContactItemType } from '@router/layout/Footer/components/FooterContact';
+import { FooterContactItemType } from '@router/layout/footer/components/FooterContact';
 
 interface FooterContactItemProps extends FooterContactItemType {}
 

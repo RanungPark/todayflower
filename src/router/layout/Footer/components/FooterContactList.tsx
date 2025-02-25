@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-import FooterContactItem from '@router/layout/Footer/components/FooterContactItem';
-import FooterInfoTittle from '@router/layout/Footer/components/FooterInfoTittle';
+import FooterContactItem from '@router/layout/footer/components/FooterContactItem';
+import FooterInfoTittle from '@router/layout/footer/components/FooterInfoTittle';
 
 import { FooterContactItemType } from './FooterContact';
 

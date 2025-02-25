@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import SNSIconButtons from '@components/buttons/SNSIconButtons';
-import FooterContactList from '@router/layout/Footer/components/FooterContactList';
-import FooterInfoTittle from '@router/layout/Footer/components/FooterInfoTittle';
+import FooterContactList from '@router/layout/footer/components/FooterContactList';
+import FooterInfoTittle from '@router/layout/footer/components/FooterInfoTittle';
 
 export interface FooterContactItemType {
   title: string;

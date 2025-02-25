@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import useScrollToTop from '@hooks/useScrollToTop';
 
-import Footer from './Footer';
-import Header from './Header';
+import Footer from './footer';
+import Header from './header';
 
 const Layout = () => {
   useScrollToTop();

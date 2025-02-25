@@ -6,7 +6,7 @@ import InputFiled from '@components/inputField';
 import { useCheckoutStep } from '@contexts/CheckoutStepContext';
 import { Step1InputDatas } from '@data/checkout';
 
-import { CheckoutFormDataType } from '../Forms';
+import { CheckoutFormDataType } from '../forms';
 import { StepCurrStyled } from '../styles';
 
 const Step1CurrInputFileds = () => {

@@ -6,7 +6,7 @@ import {
   REG_PHONE,
   REG_STRING_NUMBER,
 } from '@constants/reg';
-import { CheckoutFormDataType } from '@router/pages/checkout/Forms';
+import { CheckoutFormDataType } from '@router/pages/checkout/forms';
 import { CustomInputDatasType, InputType } from 'src/@types/inputField';
 
 export const Step1InputDatas: InputType<CheckoutFormDataType>[] = [

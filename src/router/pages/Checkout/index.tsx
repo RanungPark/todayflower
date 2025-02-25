@@ -4,7 +4,7 @@ import { CheckoutStepProvider } from '@contexts/CheckoutStepContext';
 
 import Indicator from './components/Indicator';
 import Summary from './components/Summary';
-import Forms from './Forms';
+import Forms from './forms';
 
 const Checkout = () => {
   return (

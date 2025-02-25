@@ -1,8 +1,8 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import Step1GetID from './Steps/Step1GetID';
-import Step2GetPW from './Steps/Step2GetPW';
+import Step1GetID from './steps/Step1GetID';
+import Step2GetPW from './steps/Step2GetPW';
 import Title from '../components/Title';
 
 type LoginFormDataKey = 'phoneNum' | 'password';
