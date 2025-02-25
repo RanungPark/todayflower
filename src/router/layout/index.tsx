@@ -1,15 +1,21 @@
+import { Toaster } from 'react-hot-toast';
 import { Outlet } from 'react-router';
 import styled from 'styled-components';
+
+import useScrollToTop from '@hooks/useScrollToTop';
 
 import Footer from './Footer';
 import Header from './Header';
 
 const Layout = () => {
+  useScrollToTop();
+
   return (
     <LayoutWrapper>
       <Header />
       <Outlet />
       <Footer />
+      <Toaster position="top-center" reverseOrder={false} />
     </LayoutWrapper>
   );
 };

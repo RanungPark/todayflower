@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import RadioButtonGroup from '@components/groups/RadioButtonGroup';
-import RadioButton from '@components/utilities/RadioButton';
+import RadioButton from '@components/radioButton/RadioButton';
+import RadioButtonGroup from '@components/radioButton/RadioButtonGroup';
 
 const meta = {
   title: 'Groups/RadioButtonGroup',

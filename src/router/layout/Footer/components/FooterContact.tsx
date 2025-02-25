@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import FooterContactList from '@components/lists/FooterContactList';
-import SNSIconButtonList from '@components/lists/SNSIconButtonList';
-import FooterInfoTittle from '@components/texts/FooterInfoTittle';
+import SNSIconButtons from '@components/buttons/SNSIconButtons';
+import FooterContactList from '@router/layout/Footer/components/FooterContactList';
+import FooterInfoTittle from '@router/layout/Footer/components/FooterInfoTittle';
 
 export interface FooterContactItemType {
   title: string;
@@ -22,7 +22,7 @@ const FooterContact = () => {
         contact us
       </FooterContactList>
       <FooterInfoTittle>follow us</FooterInfoTittle>
-      <SNSIconButtonList />
+      <SNSIconButtons />
     </FooterContactWrapper>
   );
 };

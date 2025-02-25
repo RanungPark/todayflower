@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-import ActionCardAndImageCardList from '@components/lists/ActionCardAndImageCardList';
-import { shopDatas } from '@data/shopDatas';
+import { shopDatas } from '@data/shop';
+import ActionCardAndImageCardList from '@router/pages/home/components/ActionCardAndImageCardList';
 
 import HomeAbout from './components/HomeAbout';
 import HomeMain from './components/HomeMain';

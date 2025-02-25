@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { ReactComponent as WClose } from '@assets/icons/wght400/WClose.svg';
 import IconButton from '@components/buttons/IconButton';
 import MenuButton from '@components/buttons/MenuButton';
+import SNSIconButtons from '@components/buttons/SNSIconButtons';
 import TextButton from '@components/buttons/TextButton';
-import SNSIconButtonList from '@components/lists/SNSIconButtonList';
 import { pageWait } from '@constants/toast';
 import { zIndex } from '@constants/zIndex';
-import { aboutDatas, menuDatas } from '@data/buttonDatas';
+import { aboutDatas, menuDatas } from '@data/button';
 import { mixins } from '@styles/Mixin';
 
 type BurgerMenuProps = {
@@ -40,7 +40,7 @@ const BurgerMenu = ({ open, setOpen }: BurgerMenuProps) => {
           ))}
         </TextButtonList>
         <SMSIconButtonWrapper>
-          <SNSIconButtonList />
+          <SNSIconButtons />
         </SMSIconButtonWrapper>
       </BurgerMenuWrapper>
     </>

@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
-import ProductInfo from '@components/texts/ProductInfo';
-import ImgCarousel from '@components/utilities/ImgCarousel';
-import Stepper from '@components/utilities/Stepper';
+import ImgCarousel from '@components/imgCarousel/ImgCarousel';
+import Stepper from '@components/stepper/Stepper';
 import { addToCart } from '@constants/toast';
+import ProductInfo from '@router/pages/categories/products/components/ProductInfo';
 import { useCartStore } from '@store/cartStore';
 import { mixins } from '@styles/Mixin';
 import { fetchProduct } from '@utils/api';

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import FooterContactItem from '@components/texts/FooterContactItem';
+import FooterContactItem from '@router/layout/Footer/components/FooterContactItem';
 
 const meta: Meta<typeof FooterContactItem> = {
   title: 'Texts/FooterContactItem',

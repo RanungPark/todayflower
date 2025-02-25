@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import BreadCrumb from '@components/utilities/BreadCrumb';
+import BreadCrumb from '@components/breadCrumb';
 
 const meta = {
   title: 'Utilities/BreadCrumb',

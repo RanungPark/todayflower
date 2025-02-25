@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
 import TextButton from '@components/buttons/TextButton';
-import FooterInfoTittle from '@components/texts/FooterInfoTittle';
 import { pageWait } from '@constants/toast';
-import { aboutDatas } from '@data/buttonDatas';
+import { aboutDatas } from '@data/button';
+import FooterInfoTittle from '@router/layout/Footer/components/FooterInfoTittle';
 import { mixins } from '@styles/Mixin';
 
 const FooterAbout = () => {

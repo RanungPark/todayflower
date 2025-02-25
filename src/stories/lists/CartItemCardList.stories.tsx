@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CartItemCardList from '@components/lists/CartItemCardList';
+import CartItemCards from '@components/cards/CartItemCards';
 
-const meta: Meta<typeof CartItemCardList> = {
-  title: 'Lists/CartItemCardList',
-  component: CartItemCardList,
+const meta: Meta<typeof CartItemCards> = {
+  title: 'Lists/CartItemCards',
+  component: CartItemCards,
   parameters: {
     layout: 'centered',
   },

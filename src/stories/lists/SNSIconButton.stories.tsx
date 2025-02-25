@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SNSIconButtonList from '@components/lists/SNSIconButtonList';
+import SNSIconButtons from '@components/buttons/SNSIconButtons';
 
-const meta: Meta<typeof SNSIconButtonList> = {
+const meta: Meta<typeof SNSIconButtons> = {
   title: 'Lists/SNSIconButtonList',
-  component: SNSIconButtonList,
+  component: SNSIconButtons,
   parameters: {
     layout: 'centered',
   },

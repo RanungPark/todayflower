@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ReactComponent as WClose } from '@assets/icons/wght400/WClose.svg';
 import IconButton from '@components/buttons/IconButton';
 import PrimaryButton from '@components/buttons/PrimaryButton';
+import CartItemCards from '@components/cards/CartItemCards';
 import CartTotalPriceCard from '@components/cards/CartTotalPriceCard';
-import CartItemCardList from '@components/lists/CartItemCardList';
 import { clearCart, loginFail } from '@constants/toast';
 import { zIndex } from '@constants/zIndex';
 import { useCartStore } from '@store/cartStore';
@@ -51,7 +51,7 @@ const Cart = ({ open, setOpen }: CartProps) => {
         {carts.length === 0 ? (
           <EmptyCartMessage>장바구니가 비어있습니다</EmptyCartMessage>
         ) : (
-          <CartItemCardList />
+          <CartItemCards />
         )}
       </CartMainWrapper>
       <CartfooterWrapper>

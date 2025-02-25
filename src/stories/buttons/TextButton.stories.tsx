@@ -72,6 +72,6 @@ export const DefaultWithCustomButton: Story = {
     children: 'Button',
     hasRightIcon: true,
     CustomButton: Check,
-    "aria-label": 'check',
+    'aria-label': 'check',
   },
 };
