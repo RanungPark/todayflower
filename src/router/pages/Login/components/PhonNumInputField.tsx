@@ -55,8 +55,9 @@ const PhonNumInputField = () => {
 
 const PhonNumInputFieldStyled = styled.form`
   ${mixins.flexBox({ direction: 'column', align: 'start' })}
-  width: 100%;
   gap: 32px;
+
+  width: 100%;
 `;
 
 export default PhonNumInputField;

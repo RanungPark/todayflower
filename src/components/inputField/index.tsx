@@ -74,6 +74,7 @@ const InputFiled = <T extends FieldValues>({
 const InputFiledStyled = styled.div`
   position: relative;
   z-index: ${zIndex.textField};
+  
   width: 100%;
 `;
 

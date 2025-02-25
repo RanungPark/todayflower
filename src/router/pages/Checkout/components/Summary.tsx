@@ -22,6 +22,7 @@ const Summary = () => {
 const SummaryStyled = styled.div`
   padding: 40px 80px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.black};
+  
   background-color: ${({ theme }) => theme.colors.extralight};
 
   & li {

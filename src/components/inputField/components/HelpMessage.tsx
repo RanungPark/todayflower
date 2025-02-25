@@ -37,6 +37,7 @@ const HelpMessageWrapper = styled.div<{ $validationState: ValidationState }>`
     HelpMessageStyles[$validationState] || HelpMessageStyles.default};
   position: absolute;
   bottom: -20px;
+  
   height: 16px;
 
   & svg {

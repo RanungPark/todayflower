@@ -54,8 +54,9 @@ const DatePicker = <T extends FieldValues>({
 };
 
 const DatePickerWrapper = styled.div`
-  z-index: ${zIndex.datePicker};
   position: relative;
+  z-index: ${zIndex.datePicker};
+
   width: 100%;
   max-height: 56px;
 `;
@@ -67,6 +68,7 @@ const DatePickerLabelWrapper = styled.label`
   border: 1px solid ${({ theme }) => theme.colors.lightgray};
 
   background-color: ${({ theme }) => theme.colors.white};
+
   cursor: pointer;
 
   &:hover {
