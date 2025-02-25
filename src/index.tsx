@@ -7,7 +7,7 @@ import { worker } from '@mocks/browser';
 import GlobalStyles from '@styles/GlobalStyles';
 import { theme } from '@styles/theme';
 
-import Router from './router/router';
+import Router from './router';
 
 if (
   process.env.NODE_ENV === 'development' ||

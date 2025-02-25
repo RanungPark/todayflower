@@ -7,6 +7,7 @@ import Checkout from './pages/checkout';
 import Home from './pages/home';
 import Login from './pages/login';
 import NotFound from './pages/notFound';
+import TestPage from './pages/notFound/Test';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       { path: '/checkout', element: <Checkout /> },
+      { path: '/test', element: <TestPage /> },
       { path: '*', element: <NotFound /> },
     ],
   },
