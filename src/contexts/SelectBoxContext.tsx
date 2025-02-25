@@ -8,7 +8,7 @@ interface SelectBoxValueType {
   isOpen: boolean;
   inputValue: string;
   handleIsOpen: () => void;
-  handleClickLi: (e: React.MouseEvent) => void;
+  handleClickLi: (optionValue: string) => void;
 }
 
 const SelectBoxContext = createContext<SelectBoxValueType | null>(null);
@@ -21,12 +21,9 @@ export const SelectBox = ({ children }: { children: React.ReactNode }) => {
     setIsOpen((prev) => !prev);
   };
 
-  const handleClickLi = (e: React.MouseEvent) => {
-    const optionValue = e.currentTarget.getAttribute('data-value');
-    if (optionValue) {
-      setInputValue(optionValue);
-      setIsOpen(false);
-    }
+  const handleClickLi = (optionValue: string) => {
+    setInputValue(optionValue);
+    setIsOpen(false);
   };
 
   const value = useMemo(
