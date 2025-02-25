@@ -1,15 +1,27 @@
-import React from 'react';
+import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import Option from '@components/selectBox/components/Option';
 import { useDropDonw } from '@contexts/SelectBoxContext';
 
-interface OptionsProps {
+interface OptionsProps<T> {
+  id: Path<T>;
   options: string[];
 }
 
-const Options = ({ options }: OptionsProps) => {
+const Options = <T extends FieldValues>({ id, options }: OptionsProps<T>) => {
+  const { setValue } = useFormContext<T>();
+
   const { isOpen, handleClickLi } = useDropDonw();
+
+  const handleClick = (e: React.MouseEvent) => {
+    const optionValue = e.currentTarget.getAttribute('data-value');
+
+    if (!optionValue) return;
+
+    setValue(id, optionValue as PathValue<T, Path<T>>);
+    handleClickLi(optionValue);
+  };
 
   return (
     <>
@@ -17,7 +29,7 @@ const Options = ({ options }: OptionsProps) => {
         <OptionsStyled>
           {options.map((option, index) => (
             <Option
-              onClick={handleClickLi}
+              onClick={handleClick}
               key={`option_${index}`}
               testId={`option${index + 1}`}
             >
