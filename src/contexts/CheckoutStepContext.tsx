@@ -30,12 +30,12 @@ const initialState: CheckoutValueType = {
   firstStep: {
     title: '1 Contact Information',
     sub: 'information',
-    state: 'done',
+    state: 'curr',
   },
   secondStep: {
     title: '2 Shipping Details',
     sub: 'shipping',
-    state: 'curr',
+    state: 'pending',
   },
   thirdStep: { title: '3 Payment', sub: 'payment', state: 'pending' },
 };
