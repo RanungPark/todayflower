@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
+import DatePicker from '@components/dataPicker';
 import InputFiled from '@components/inputField';
 import { useCheckoutStep } from '@contexts/CheckoutStepContext';
 import { SelectBox } from '@contexts/SelectBoxContext';
@@ -40,15 +41,18 @@ const Step2CurrInputFileds = () => {
             );
           }
           case 'datePicker': {
-            return <></>;
+            const { input } = inputDatas;
+            return <DatePicker<CheckoutFormDataType> input={input} />;
           }
           case 'selectBox': {
             const { input, options } = inputDatas;
-
             return (
               <SelectBox>
-                <SelectBox.label input={input} />
-                <SelectBox.Options options={options} />
+                <SelectBox.label<CheckoutFormDataType> input={input} />
+                <SelectBox.Options<CheckoutFormDataType>
+                  id={input.id}
+                  options={options}
+                />
               </SelectBox>
             );
           }
