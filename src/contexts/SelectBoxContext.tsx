@@ -38,10 +38,10 @@ export const SelectBox = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-SelectBox.label = Label;
+SelectBox.Label = Label;
 SelectBox.Options = Options;
 
-export const useDropDonw = () => {
+export const useSelectBox = () => {
   const context = useContext(SelectBoxContext);
   if (!context) {
     throw new Error('SelectBox 내부에서 사용해야 합니다.');

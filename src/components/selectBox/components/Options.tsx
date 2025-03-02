@@ -2,7 +2,7 @@ import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 import Option from '@components/selectBox/components/Option';
-import { useDropDonw } from '@contexts/SelectBoxContext';
+import { useSelectBox } from '@contexts/SelectBoxContext';
 
 interface OptionsProps<T> {
   id: Path<T>;
@@ -12,7 +12,7 @@ interface OptionsProps<T> {
 const Options = <T extends FieldValues>({ id, options }: OptionsProps<T>) => {
   const { setValue } = useFormContext<T>();
 
-  const { isOpen, handleClickLi } = useDropDonw();
+  const { isOpen, handleClickLi } = useSelectBox();
 
   const handleClick = (e: React.MouseEvent) => {
     const optionValue = e.currentTarget.getAttribute('data-value');

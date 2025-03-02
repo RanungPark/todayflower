@@ -48,7 +48,7 @@ const Step2CurrInputFileds = () => {
             const { input, options } = inputDatas;
             return (
               <SelectBox>
-                <SelectBox.label<CheckoutFormDataType> input={input} />
+                <SelectBox.Label<CheckoutFormDataType> input={input} />
                 <SelectBox.Options<CheckoutFormDataType>
                   id={input.id}
                   options={options}

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as CaretDown } from '@assets/icons/wght300/CaretDown.svg';
 import { ReactComponent as CaretUp } from '@assets/icons/wght300/CaretUp.svg';
 import IconButton from '@components/buttons/IconButton';
-import { useDropDonw } from '@contexts/SelectBoxContext';
+import { useSelectBox } from '@contexts/SelectBoxContext';
 import { mixins } from '@styles/Mixin';
 import { InputType } from 'src/@types/inputField';
 
@@ -22,7 +22,7 @@ const Label = <T extends FieldValues>({
 }: LabelProps<T>) => {
   const { register } = useFormContext<T>();
 
-  const { inputValue, isOpen, handleIsOpen } = useDropDonw();
+  const { inputValue, isOpen, handleIsOpen } = useSelectBox();
 
   return (
     <LabelStyled $disabled={disabled} htmlFor={id}>
