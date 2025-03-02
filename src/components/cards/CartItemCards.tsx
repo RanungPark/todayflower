@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import CartItemCard from '@components/cards/CartItemCard';
 import { removeToCart } from '@constants/toast';
@@ -24,9 +23,11 @@ const CartItemCards = ({ hasTextButton = true }: CartItemCardsProps) => {
     <CartItemCardsWrapper>
       {carts.map(({ id, name, imgPath, price, quantity, category }) => (
         <CartItemCard
-          key={uuidv4()}
-          imgPath={imgPath + imgOptimization({ width: 200, height: 200 })}
-          alt={name}
+          key={id}
+          img={{
+            src: imgPath + imgOptimization({ width: 200, height: 200 }),
+            alt: name,
+          }}
           price={price}
           quantity={quantity}
           onClick={handleRemoveClick({ category, id, name })}

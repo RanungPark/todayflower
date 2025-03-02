@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface TextCardProps {
   title: string;
-  children: string;
+  children: React.ReactNode;
   label?: string;
 }
 

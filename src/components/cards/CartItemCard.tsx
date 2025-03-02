@@ -5,13 +5,12 @@ import { mixins } from '@styles/Mixin';
 import { changeKroeaPrice } from '@utils/price';
 
 interface CartItemCardProps {
-  children: string;
+  children: React.ReactNode;
   price: number;
   quantity: number;
-  alt: string;
-  imgPath: string;
+  img: React.ImgHTMLAttributes<HTMLImageElement>;
   hasTextButton?: boolean;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   testId?: string;
 }
 
@@ -19,15 +18,14 @@ const CartItemCard = ({
   children,
   price,
   quantity,
-  alt,
-  imgPath,
+  img,
   hasTextButton = true,
   onClick,
   testId,
 }: CartItemCardProps) => {
   return (
     <CartItemCardPropsWrapper data-cy={testId}>
-      <Img alt={alt} src={imgPath} />
+      <Img {...img} />
       <CartItemCardInfosWrapper>
         <Name>{children}</Name>
         <Quantity>{`Quantity (${quantity})`}</Quantity>

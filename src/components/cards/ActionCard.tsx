@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import TextButton from '@components/buttons/TextButton';
@@ -5,7 +6,7 @@ import { mixins } from '@styles/Mixin';
 
 interface ActionCardProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  children: string;
+  children: React.ReactNode;
   buttonText: string;
   hasRightIcon?: boolean;
   hasLeftIcon?: boolean;

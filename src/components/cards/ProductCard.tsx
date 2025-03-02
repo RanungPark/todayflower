@@ -6,19 +6,17 @@ import ProductCardInfoList from '@router/pages/categories/products/components/Pr
 import { mixins } from '@styles/Mixin';
 
 interface ProductCardProps {
-  alt: string;
-  imgPath: string;
-  children: string;
+  img: React.ImgHTMLAttributes<HTMLImageElement>;
+  children: React.ReactNode;
   infoItems: string[];
   select?: boolean;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   testId?: string;
   buttonTestId?: string;
 }
 
 const ProductCard = ({
-  alt,
-  imgPath,
+  img,
   children,
   infoItems,
   select = false,
@@ -29,7 +27,7 @@ const ProductCard = ({
   return (
     <ProductCardWrapper data-cy={testId}>
       <Contents>
-        <Img alt={alt} src={imgPath} />
+        <Img {...img} />
         <ProductCardInfoList infoItems={infoItems}>
           {children}
         </ProductCardInfoList>

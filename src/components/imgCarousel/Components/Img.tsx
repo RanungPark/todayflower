@@ -10,11 +10,12 @@ const Img = () => {
       {viewProducts.map(({ name, price, imgPath, category, id }) => (
         <SecondaryImageCard
           price={price}
-          imgPath={
-            imgPath +
-            imgOptimization({ width: 100, height: 100, auto: ['format'] })
-          }
-          alt={name}
+          img={{
+            src:
+              imgPath +
+              imgOptimization({ width: 100, height: 100, auto: ['format'] }),
+            alt: name,
+          }}
           onClick={goToProduct({ productId: id, productCategory: category })}
           key={id}
           testId={`${category}_${id}_CarouseBtn`}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface TitleCardProps {
-  children: string;
+  children: React.ReactNode;
 }
 
 const TitleCard = ({ children }: TitleCardProps) => {

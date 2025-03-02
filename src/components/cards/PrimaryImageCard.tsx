@@ -4,17 +4,15 @@ import { mixins } from '@styles/Mixin';
 import { changeKroeaPrice } from '@utils/price';
 
 interface PrimaryImageCardProps {
-  imgPath: string;
-  alt: string;
+  img: React.ImgHTMLAttributes<HTMLImageElement>;
   price?: number;
-  children?: string;
-  onClick: (e: React.MouseEvent) => void;
+  children?: React.ReactNode;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
   testId?: string;
 }
 
 const PrimaryImageCard = ({
-  imgPath,
-  alt,
+  img,
   price,
   children,
   onClick,
@@ -22,7 +20,7 @@ const PrimaryImageCard = ({
 }: PrimaryImageCardProps) => {
   return (
     <PrimaryImageCardWrapper onClick={onClick} data-cy={testId}>
-      <Img alt={alt} src={imgPath} />
+      <Img {...img} />
       <Contents>
         {children}
         {price !== undefined && (

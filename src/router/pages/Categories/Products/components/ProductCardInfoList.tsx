@@ -5,7 +5,7 @@ import ProductCardInfo from '@router/pages/categories/products/components/Produc
 import { mixins } from '@styles/Mixin';
 
 interface ProductCardInfoListProps {
-  children: string;
+  children: React.ReactNode;
   infoItems: string[];
 }
 
