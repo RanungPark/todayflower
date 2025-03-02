@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as ArrowDownRight } from '@assets/icons/wght300/ArrowDownRight.svg';
@@ -7,15 +7,13 @@ import { mixins } from '@styles/Mixin';
 
 interface AccordionProps {
   title: string;
-  children: string;
+  children: React.ReactNode;
 }
 
 const Accordion = ({ title, children }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClickn = () => {
-    setIsOpen(!isOpen);
-  };
+  const handleClickn = () => setIsOpen((prev) => !prev);
 
   return (
     <AccordionWrapper>
