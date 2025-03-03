@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import { ReactComponent as Check } from '@assets/icons/wght300/Check.svg';
-import PrimaryButton from '@components/buttons/PrimaryButton';
+import PrimaryButton, {
+  PrimaryButtonProps,
+} from '@components/buttons/PrimaryButton';
 import ProductCardInfoList from '@router/pages/categories/products/components/ProductCardInfoList';
 import { mixins } from '@styles/Mixin';
 
@@ -9,20 +10,16 @@ interface ProductCardProps {
   img: React.ImgHTMLAttributes<HTMLImageElement>;
   children: React.ReactNode;
   infoItems: string[];
-  select?: boolean;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   testId?: string;
-  buttonTestId?: string;
+  primaryButton: PrimaryButtonProps;
 }
 
 const ProductCard = ({
   img,
   children,
   infoItems,
-  select = false,
-  onClick,
   testId,
-  buttonTestId,
+  primaryButton,
 }: ProductCardProps) => {
   return (
     <ProductCardWrapper data-cy={testId}>
@@ -32,14 +29,7 @@ const ProductCard = ({
           {children}
         </ProductCardInfoList>
       </Contents>
-      <PrimaryButton
-        onClick={onClick}
-        hasLeftIcon={select}
-        CustomButton={Check}
-        testId={buttonTestId}
-      >
-        select
-      </PrimaryButton>
+      <PrimaryButton {...primaryButton}>{primaryButton.children}</PrimaryButton>
     </ProductCardWrapper>
   );
 };

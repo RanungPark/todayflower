@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
-import CartItemCard from '@components/cards/CartItemCard';
 import { removeToCart } from '@constants/toast';
 import { useCartStore } from '@store/cartStore';
 import { imgOptimization } from '@utils/img';
 
-interface CartItemCardsProps {
-  hasTextButton?: boolean;
-}
+import CartItem from './CartItem';
 
-const CartItemCards = ({ hasTextButton = true }: CartItemCardsProps) => {
+const CartItems = () => {
   const { carts, removeItem } = useCartStore();
 
   const handleRemoveClick =
@@ -20,9 +17,9 @@ const CartItemCards = ({ hasTextButton = true }: CartItemCardsProps) => {
     };
 
   return (
-    <CartItemCardsWrapper>
+    <CartItemsWrapper>
       {carts.map(({ id, name, imgPath, price, quantity, category }) => (
-        <CartItemCard
+        <CartItem
           key={id}
           img={{
             src: imgPath + imgOptimization({ width: 200, height: 200 }),
@@ -30,17 +27,19 @@ const CartItemCards = ({ hasTextButton = true }: CartItemCardsProps) => {
           }}
           price={price}
           quantity={quantity}
-          onClick={handleRemoveClick({ category, id, name })}
-          hasTextButton={hasTextButton}
+          textButton={{
+            onClick: () => handleRemoveClick({ category, id, name }),
+            children: 'Remove',
+          }}
           testId={`cart_${category}_${id}`}
         >
           {name}
-        </CartItemCard>
+        </CartItem>
       ))}
-    </CartItemCardsWrapper>
+    </CartItemsWrapper>
   );
 };
 
-const CartItemCardsWrapper = styled.ul``;
+const CartItemsWrapper = styled.ul``;
 
-export default CartItemCards;
+export default CartItems;

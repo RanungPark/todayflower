@@ -1,10 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import { shopDatas } from '@data/shop';
-import ActionCardAndImageCardList from '@router/pages/home/components/ActionCardAndImageCardList';
+import HomeList from '@router/pages/home/components/HomeList';
 
 import HomeAbout from './components/HomeAbout';
 import HomeMain from './components/HomeMain';
@@ -22,19 +21,19 @@ const Home = () => {
   return (
     <HomePageWrapper>
       <HomeMain />
-      {shopDatas.map(({ children, imgPath, url }, index) => (
-        <ActionCardAndImageCardList
-          key={uuidv4()}
+      {shopDatas.map(({ id, children, src, url }, index) => (
+        <HomeList
+          key={id}
           onClick={handleShopClick(url)}
           index={index}
           buttonText="Shop now"
-          imgPath={imgPath}
+          src={src}
           alt={children}
           actionTestId={`action_${index}`}
           imgTestId={`img_${index}`}
         >
           {children.trim().replace(/\s+/g, '')}
-        </ActionCardAndImageCardList>
+        </HomeList>
       ))}
       <HomeAbout />
     </HomePageWrapper>

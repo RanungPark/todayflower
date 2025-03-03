@@ -3,71 +3,79 @@ import styled from 'styled-components';
 import ActionCard from '@components/cards/ActionCard';
 import PrimaryImageCard from '@components/cards/PrimaryImageCard';
 
-export interface ActionCardAndImageCardListProps {
+export interface HomeListProps {
   index: number;
   onClick: (e: React.MouseEvent) => void;
   children: string;
   buttonText: string;
-  imgPath: string;
+  src: string;
   alt: string;
   actionTestId?: string;
   imgTestId?: string;
 }
 
-const ActionCardAndImageCardList = ({
+const HomeList = ({
   index,
   onClick,
   children,
   buttonText,
-  imgPath,
+  src,
   alt,
   actionTestId,
   imgTestId,
-}: ActionCardAndImageCardListProps) => {
+}: HomeListProps) => {
   if (index % 2 === 0) {
     return (
-      <ActionCardAndImageCardListWrapper>
+      <HomeListWrapper>
         <ActionCard
-          onClick={onClick}
-          buttonText={buttonText}
-          hasRightIcon={true}
+          textButton={{
+            onClick,
+            children: buttonText,
+            hasRightIcon: true,
+            testId: 'actionCardBtn',
+          }}
           testId={actionTestId}
-          buttonTestId="actionCardBtn"
         >
           {children}
         </ActionCard>
         <PrimaryImageCard
-          alt={alt}
-          imgPath={imgPath}
+          img={{
+            src,
+            alt,
+          }}
           onClick={onClick}
           testId={imgTestId}
         />
-      </ActionCardAndImageCardListWrapper>
+      </HomeListWrapper>
     );
   } else {
     return (
-      <ActionCardAndImageCardListWrapper>
+      <HomeListWrapper>
         <PrimaryImageCard
-          alt={alt}
-          imgPath={imgPath}
+          img={{
+            src,
+            alt,
+          }}
           onClick={onClick}
           testId={imgTestId}
         />
         <ActionCard
-          onClick={onClick}
-          buttonText={buttonText}
-          hasLeftIcon={true}
+          textButton={{
+            onClick,
+            hasLeftIcon: true,
+            children: buttonText,
+            testId: 'actionCardBtn',
+          }}
           testId={actionTestId}
-          buttonTestId="actionCardBtn"
         >
           {children}
         </ActionCard>
-      </ActionCardAndImageCardListWrapper>
+      </HomeListWrapper>
     );
   }
 };
 
-const ActionCardAndImageCardListWrapper = styled.section`
+const HomeListWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
@@ -76,4 +84,4 @@ const ActionCardAndImageCardListWrapper = styled.section`
   }
 `;
 
-export default ActionCardAndImageCardList;
+export default HomeList;

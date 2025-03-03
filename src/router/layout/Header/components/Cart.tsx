@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { ReactComponent as WClose } from '@assets/icons/wght400/WClose.svg';
 import IconButton from '@components/buttons/IconButton';
 import PrimaryButton from '@components/buttons/PrimaryButton';
-import CartItemCards from '@components/cards/CartItemCards';
-import CartTotalPriceCard from '@components/cards/CartTotalPriceCard';
+import CartItems from '@components/carts/CartItems';
+import CartTotalPrice from '@components/carts/CartTotalPrice';
 import { clearCart, loginFail } from '@constants/toast';
 import { zIndex } from '@constants/zIndex';
 import { useCartStore } from '@store/cartStore';
@@ -51,11 +51,11 @@ const Cart = ({ open, setOpen }: CartProps) => {
         {carts.length === 0 ? (
           <EmptyCartMessage>장바구니가 비어있습니다</EmptyCartMessage>
         ) : (
-          <CartItemCards />
+          <CartItems />
         )}
       </CartMainWrapper>
       <CartfooterWrapper>
-        <CartTotalPriceCard>Subtotal</CartTotalPriceCard>
+        <CartTotalPrice>Subtotal</CartTotalPrice>
         <ShippingNote>
           배송비 및 세금은 결제 시 계산됩니다. 오늘의 꽃 내 무료 표준 배송
         </ShippingNote>

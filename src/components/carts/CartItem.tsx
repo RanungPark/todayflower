@@ -1,54 +1,52 @@
 import styled from 'styled-components';
 
-import TextButton from '@components/buttons/TextButton';
+import TextButton, { TextButtonProps } from '@components/buttons/TextButton';
 import { mixins } from '@styles/Mixin';
 import { changeKroeaPrice } from '@utils/price';
 
-interface CartItemCardProps {
+interface CartItemProps {
   children: React.ReactNode;
   price: number;
   quantity: number;
   img: React.ImgHTMLAttributes<HTMLImageElement>;
-  hasTextButton?: boolean;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  textButton?: TextButtonProps;
   testId?: string;
 }
 
-const CartItemCard = ({
+const CartItem = ({
   children,
   price,
   quantity,
   img,
-  hasTextButton = true,
-  onClick,
+  textButton,
   testId,
-}: CartItemCardProps) => {
+}: CartItemProps) => {
   return (
-    <CartItemCardPropsWrapper data-cy={testId}>
+    <CartItemPropsWrapper data-cy={testId}>
       <Img {...img} />
-      <CartItemCardInfosWrapper>
+      <CartItemInfosWrapper>
         <Name>{children}</Name>
         <Quantity>{`Quantity (${quantity})`}</Quantity>
-        {hasTextButton && (
+        {textButton && (
           <Price>
             {`${changeKroeaPrice(price)}`} <Unit>KRW</Unit>
           </Price>
         )}
-      </CartItemCardInfosWrapper>
-      {hasTextButton ? (
-        <TextButton onClick={onClick} testId="cartItemRemoveBtn">
-          Remove
+      </CartItemInfosWrapper>
+      {textButton ? (
+        <TextButton {...textButton} testId="cartItemRemoveBtn">
+          {textButton.children}
         </TextButton>
       ) : (
         <Price>
           {`${changeKroeaPrice(price)}`} <Unit>KRW</Unit>
         </Price>
       )}
-    </CartItemCardPropsWrapper>
+    </CartItemPropsWrapper>
   );
 };
 
-const CartItemCardPropsWrapper = styled.li`
+const CartItemPropsWrapper = styled.li`
   ${mixins.flexBox({ justify: 'space-between' })}
   ${({ theme }) => theme.typography.Subtitle}
 `;
@@ -68,7 +66,7 @@ const Unit = styled.span`
   ${({ theme }) => theme.typography.Body}
 `;
 
-const CartItemCardInfosWrapper = styled.div`
+const CartItemInfosWrapper = styled.div`
   ${mixins.flexBox({ direction: 'column', align: 'start' })}
   flex: 1;
   gap: 8px;
@@ -80,4 +78,4 @@ const CartItemCardInfosWrapper = styled.div`
   }
 `;
 
-export default CartItemCard;
+export default CartItem;

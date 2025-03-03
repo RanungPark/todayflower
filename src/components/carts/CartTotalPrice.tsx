@@ -3,22 +3,22 @@ import styled from 'styled-components';
 import { mixins } from '@styles/Mixin';
 import { changeKroeaPrice, totalPriceCalc } from '@utils/price';
 
-interface CartTotalPriceCardProps {
+interface CartTotalPriceProps {
   children: React.ReactNode;
 }
 
-const CartTotalPriceCard = ({ children }: CartTotalPriceCardProps) => {
+const CartTotalPrice = ({ children }: CartTotalPriceProps) => {
   return (
-    <CartTotalPriceCardWrapper>
+    <CartTotalPriceWrapper>
       {children}
       <TotalPrice>
         {`${changeKroeaPrice(totalPriceCalc())}`} <Unit> KRW</Unit>
       </TotalPrice>
-    </CartTotalPriceCardWrapper>
+    </CartTotalPriceWrapper>
   );
 };
 
-const CartTotalPriceCardWrapper = styled.div`
+const CartTotalPriceWrapper = styled.div`
   ${mixins.flexBox({ justify: 'space-between' })}
   ${({ theme }) => theme.typography.Subtitle}
 `;
@@ -30,4 +30,4 @@ const TotalPrice = styled.span`
 const Unit = styled.span`
   ${({ theme }) => theme.typography.Heading6}
 `;
-export default CartTotalPriceCard;
+export default CartTotalPrice;
