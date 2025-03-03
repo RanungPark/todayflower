@@ -2,6 +2,9 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
+import Img from '@components/imgCarousel/Components/Img';
+import LeftButton from '@components/imgCarousel/Components/LeftButton';
+import RightButton from '@components/imgCarousel/Components/RightButton';
 import { mixins } from '@styles/Mixin';
 import { ProductType } from 'src/@types/product';
 
@@ -77,6 +80,10 @@ export const ImgCarousel = ({
     </ImgCarouselContext.Provider>
   );
 };
+
+ImgCarousel.Img = Img;
+ImgCarousel.LeftButton = LeftButton;
+ImgCarousel.RightButton = RightButton;
 
 export const useImgCarousel = () => {
   const context = useContext(ImgCarouselContext);
