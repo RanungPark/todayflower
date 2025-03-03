@@ -6,7 +6,7 @@ import { Variant } from 'src/@types/common';
 import RenderIcon from './components/RenderIcon';
 import { PrimaryButtonVariantStyles } from './styles';
 
-interface PrimaryButtonProps
+export interface PrimaryButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: Variant;

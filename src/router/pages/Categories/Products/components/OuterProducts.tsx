@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import PrimaryImageCard from '@components/cards/PrimaryImageCard';
 import { mixins } from '@styles/Mixin';
@@ -31,10 +30,12 @@ const OuterProducts = ({ outerProducts }: OuterProductsProps) => {
       <OuterProductsList>
         {outerProducts.map(({ id, name, price, imgPath, category }) => (
           <PrimaryImageCard
-            key={uuidv4()}
-            alt={name}
+            key={id}
+            img={{
+              alt: name,
+              src: imgPath + imgOptimization({ width: 500, height: 500 }),
+            }}
             onClick={goToProduct({ productId: id, productCategory: category })}
-            imgPath={imgPath + imgOptimization({ width: 500, height: 500 })}
             price={price}
             testId={`${category}_${id}`}
           >

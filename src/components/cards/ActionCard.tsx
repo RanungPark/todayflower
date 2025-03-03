@@ -1,40 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TextButton from '@components/buttons/TextButton';
+import TextButton, { TextButtonProps } from '@components/buttons/TextButton';
 import { mixins } from '@styles/Mixin';
 
 interface ActionCardProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  textButton: TextButtonProps;
   children: React.ReactNode;
-  buttonText: string;
-  hasRightIcon?: boolean;
-  hasLeftIcon?: boolean;
   testId?: string;
-  buttonTestId?: string;
 }
 
-const ActionCard = ({
-  children,
-  buttonText,
-  onClick,
-  hasLeftIcon = false,
-  hasRightIcon = false,
-  testId,
-  buttonTestId,
-}: ActionCardProps) => {
+const ActionCard = ({ children, testId, textButton }: ActionCardProps) => {
   return (
     <ActionCardWrapper data-cy={testId}>
       {children}
       <ButtonWrapper>
-        <TextButton
-          onClick={onClick}
-          hasLeftIcon={hasLeftIcon}
-          hasRightIcon={hasRightIcon}
-          testId={buttonTestId}
-        >
-          {buttonText}
-        </TextButton>
+        <TextButton {...textButton}>{textButton.children}</TextButton>
       </ButtonWrapper>
     </ActionCardWrapper>
   );

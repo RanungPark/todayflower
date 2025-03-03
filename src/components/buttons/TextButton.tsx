@@ -5,7 +5,7 @@ import { mixins } from '@styles/Mixin';
 
 import RenderIcon from './components/RenderIcon';
 
-interface TextButtonProps
+export interface TextButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   hasLeftIcon?: boolean;

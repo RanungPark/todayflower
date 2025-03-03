@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import BackgroundImageCard from '@components/cards/BackgroundImageCard';
 import PrimaryImageCard from '@components/cards/PrimaryImageCard';
@@ -48,10 +47,12 @@ const Category = () => {
       <CategoryCardList>
         {products.map(({ id, name, price, imgPath, category }) => (
           <PrimaryImageCard
-            key={uuidv4()}
-            alt={name}
+            key={id}
+            img={{
+              src: imgPath + imgOptimization({ width: 500, height: 500 }),
+              alt: name,
+            }}
             onClick={() => navigate(`products/${id}`)}
-            imgPath={imgPath + imgOptimization({ width: 500, height: 500 })}
             price={price}
             testId={`${category}_${id}`}
           >
