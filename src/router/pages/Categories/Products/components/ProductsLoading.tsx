@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import PrimaryCardSkeleton from '@components/skeletons/PrimaryCardSkeleton';
 import ProductInfoSkeleton from '@components/skeletons/ProductInfoSkeleton';
@@ -17,8 +16,8 @@ const ProductsLoading = () => {
         <SubSkeleton />
       </SubSkeletonWrapper>
       <LoadingCardList>
-        {Array.from({ length: 6 }).map(() => (
-          <PrimaryCardSkeleton key={uuidv4()} />
+        {Array.from({ length: 6 }).map((v, i) => (
+          <PrimaryCardSkeleton key={`${v}_${i}`} />
         ))}
       </LoadingCardList>
     </ProductsLoadingWrapper>

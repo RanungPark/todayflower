@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import TextCard from '@components/cards/TextCard';
@@ -21,7 +20,7 @@ const HomeAbout = () => {
       </HomeAboutTextCardAndButtonWrapper>
       <TitleCard>Why choose us ?</TitleCard>
       {chooseUsDatas.map(({ title, children }) => (
-        <TextCard key={uuidv4()} title={title}>
+        <TextCard key={title} title={title}>
           {children}
         </TextCard>
       ))}

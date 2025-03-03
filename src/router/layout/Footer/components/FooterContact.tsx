@@ -5,14 +5,15 @@ import FooterContactList from '@router/layout/footer/components/FooterContactLis
 import FooterInfoTittle from '@router/layout/footer/components/FooterInfoTittle';
 
 export interface FooterContactItemType {
+  id: number;
   title: string;
   children: string;
 }
 
 const contactItems: FooterContactItemType[] = [
-  { title: 'address', children: '경기도 시흥시 진말로 36번지' },
-  { title: 'Phone', children: '01087971558' },
-  { title: 'General Enquiry:', children: 'ckehfqkr302@gamil.com' },
+  { id: 1, title: 'address', children: '경기도 시흥시 진말로 36번지' },
+  { id: 2, title: 'Phone', children: '01087971558' },
+  { id: 3, title: 'General Enquiry:', children: 'ckehfqkr302@gamil.com' },
 ];
 
 const FooterContact = () => {

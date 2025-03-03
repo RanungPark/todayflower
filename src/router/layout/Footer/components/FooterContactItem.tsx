@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-import { FooterContactItemType } from '@router/layout/footer/components/FooterContact';
-
-interface FooterContactItemProps extends FooterContactItemType {}
+interface FooterContactItemProps {
+  title: string;
+  children: React.ReactNode;
+}
 
 const FooterContactItem = ({ title, children }: FooterContactItemProps) => {
   return (

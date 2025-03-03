@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import ProductCardInfo from '@router/pages/categories/products/components/ProductCardInfo';
 import { mixins } from '@styles/Mixin';
@@ -18,7 +17,7 @@ const ProductCardInfoList = ({
       {children}
       <Ul>
         {infoItems.map((infoItem) => (
-          <ProductCardInfo key={uuidv4()}>{infoItem}</ProductCardInfo>
+          <ProductCardInfo key={infoItem}>{infoItem}</ProductCardInfo>
         ))}
       </Ul>
     </ProductCardInfoListWrapper>

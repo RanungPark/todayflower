@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import FooterContactItem from '@router/layout/footer/components/FooterContactItem';
 import FooterInfoTittle from '@router/layout/footer/components/FooterInfoTittle';
@@ -19,8 +18,8 @@ const FooterContactList = ({
     <FooterContactListWrapper>
       <FooterInfoTittle>{children}</FooterInfoTittle>
       <Ul>
-        {contactItems.map(({ title, children }) => (
-          <FooterContactItem title={title} key={uuidv4()}>
+        {contactItems.map(({ id, title, children }) => (
+          <FooterContactItem title={title} key={id}>
             {children}
           </FooterContactItem>
         ))}

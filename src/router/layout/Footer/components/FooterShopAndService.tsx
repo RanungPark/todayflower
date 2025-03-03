@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import TextButton from '@components/buttons/TextButton';
 import { pageWait } from '@constants/toast';
@@ -9,8 +8,8 @@ import { shopDatas } from '@data/shop';
 import FooterInfoTittle from '@router/layout/footer/components/FooterInfoTittle';
 import { mixins } from '@styles/Mixin';
 
-const footerShopDatas = shopDatas.map(({ children, url }) => {
-  return { children, url };
+const footerShopDatas = shopDatas.map(({ id, children, url }) => {
+  return { id, children, url };
 });
 
 const FooterShopAndService = () => {
@@ -25,8 +24,8 @@ const FooterShopAndService = () => {
     <FooterShopAndServiceWrapper>
       <FooterInfoTittle>shop</FooterInfoTittle>
       <FooterTextButtonList>
-        {footerShopDatas.map(({ children, url }) => (
-          <TextButton key={uuidv4()} onClick={handleShopClick(url)}>
+        {footerShopDatas.map(({ id, children, url }) => (
+          <TextButton key={id} onClick={handleShopClick(url)}>
             {children}
           </TextButton>
         ))}
@@ -34,7 +33,7 @@ const FooterShopAndService = () => {
       <FooterInfoTittle>service</FooterInfoTittle>
       <FooterTextButtonList>
         {serviceDatas.map((children) => (
-          <TextButton key={uuidv4()} onClick={pageWait}>
+          <TextButton key={children} onClick={pageWait}>
             {children}
           </TextButton>
         ))}

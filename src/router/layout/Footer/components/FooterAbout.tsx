@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import TextButton from '@components/buttons/TextButton';
 import { pageWait } from '@constants/toast';
@@ -13,7 +12,7 @@ const FooterAbout = () => {
       <FooterInfoTittle>service</FooterInfoTittle>
       <FooterTextButtonList>
         {aboutDatas.map((children) => (
-          <TextButton key={uuidv4()} onClick={pageWait}>
+          <TextButton key={children} onClick={pageWait}>
             {children}
           </TextButton>
         ))}

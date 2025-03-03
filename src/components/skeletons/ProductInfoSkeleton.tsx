@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import { LoadingAnimation, LongLoadingAnimation } from '@styles/animation';
 import { mixins } from '@styles/Mixin';
@@ -14,8 +13,8 @@ const ProductInfoSkeleton = () => {
       <SubSkeleton />
       <StepperSkeleton />
       <SecondaryCardSkeletonWrapper>
-        {Array.from({ length: 5 }).map(() => (
-          <SecondaryCardSkeleton key={uuidv4()} />
+        {Array.from({ length: 5 }).map((v, i) => (
+          <SecondaryCardSkeleton key={`${v}_${i}`} />
         ))}
       </SecondaryCardSkeletonWrapper>
       <ButtonSkeleton />
