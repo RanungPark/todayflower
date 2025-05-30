@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { mixins } from '@styles/Mixin';
-import { changeKroeaPrice } from '@utils/price';
+import {mixins} from '@styles/Mixin';
+import {changeKroeaPrice} from '@utils/price';
 
 interface SecondaryImageCardProps {
   imgPath: string;
@@ -12,29 +12,10 @@ interface SecondaryImageCardProps {
   testId?: string;
 }
 
-const SecondaryImageCard = ({
-  imgPath,
-  alt,
-  price,
-  children,
-  onClick,
-  testId,
-}: SecondaryImageCardProps) => {
-  return (
-    <SecondaryImageCardWrapper onClick={onClick} data-cy={testId}>
-      <Img alt={alt} src={imgPath} />
-      <Contents>
-        {children}
-        <Price>{changeKroeaPrice(price)}</Price>
-      </Contents>
-    </SecondaryImageCardWrapper>
-  );
-};
-
 const SecondaryImageCardWrapper = styled.div`
   width: 100px;
 
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({theme}) => theme.colors.white};
 
   cursor: pointer;
 `;
@@ -42,20 +23,20 @@ const SecondaryImageCardWrapper = styled.div`
 const Img = styled.img`
   width: 100px;
   height: 100px;
-  border: 1px solid ${({ theme }) => theme.colors.lightgray};
+  border: 1px solid ${({theme}) => theme.colors.lightgray};
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.colors.gray};
+    border: 1px solid ${({theme}) => theme.colors.gray};
   }
 
   &:active {
-    border: 1px solid ${({ theme }) => theme.colors.black};
+    border: 1px solid ${({theme}) => theme.colors.black};
   }
 `;
 
 const Contents = styled.div`
-  ${mixins.flexBox({ direction: 'column', align: 'start' })}
-  ${({ theme }) => theme.typography.Caption}
+  ${mixins.flexBox({direction: 'column', align: 'start'})}
+  ${({theme}) => theme.typography.Caption}
   overflow: hidden;
   gap: 4px;
 
@@ -66,7 +47,19 @@ const Contents = styled.div`
 `;
 
 const Price = styled.p`
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({theme}) => theme.colors.gray};
 `;
+
+const SecondaryImageCard = ({imgPath, alt, price, children, onClick, testId}: SecondaryImageCardProps) => {
+  return (
+    <SecondaryImageCardWrapper onClick={onClick} data-cy={testId}>
+      <Img alt={alt} src={imgPath} />
+      <Contents>
+        {children}
+        <Price>{changeKroeaPrice(price)}</Price>
+      </Contents>
+    </SecondaryImageCardWrapper>
+  );
+};
 
 export default SecondaryImageCard;

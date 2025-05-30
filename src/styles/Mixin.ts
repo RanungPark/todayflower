@@ -1,7 +1,7 @@
-import { css } from 'styled-components';
+import {css} from 'styled-components';
 
-import { OptionalFromFlexBoxProps } from 'src/@types/mixin/flexbox';
-import { OptionalButtonProps } from 'src/@types/mixin/nodeToColor';
+import type {OptionalFromFlexBoxProps} from 'src/@types/mixin/flexbox';
+import type {OptionalButtonProps} from 'src/@types/mixin/nodeToColor';
 
 export const mixins = {
   flexBox: ({
@@ -16,9 +16,9 @@ export const mixins = {
     align-items: ${align};
   `,
 
-  border: ({ width }: { width: 'right' | 'leftAndBottom' }) => css`
-    ${({ theme }) => {
-      const { black } = theme.colors;
+  border: ({width}: {width: 'right' | 'leftAndBottom'}) => css`
+    ${({theme}) => {
+      const {black} = theme.colors;
       if (width === 'right') {
         return css`
           border-right: 1px solid ${black};
@@ -32,10 +32,10 @@ export const mixins = {
     }}
   `,
 
-  button: ({ colorAndFill, bgColor, borderColor }: OptionalButtonProps) => {
+  button: ({colorAndFill, bgColor, borderColor}: OptionalButtonProps) => {
     return css`
-      ${({ theme }) => {
-        const { colors } = theme;
+      ${({theme}) => {
+        const {colors} = theme;
         return css`
           color: ${colors[colorAndFill]};
           background-color: ${bgColor ? colors[bgColor] : 'inherit'};

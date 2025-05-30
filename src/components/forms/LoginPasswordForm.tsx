@@ -1,16 +1,16 @@
-import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import {useMutation} from '@tanstack/react-query';
+import {useState} from 'react';
+import {useForm} from 'react-hook-form';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import DefaultTextField from '@components/textfields/DefaultTextField';
-import { loginDone } from '@constants/toast';
-import { loginStateType } from '@pages/LoginPage';
-import { useUserStore } from '@store/userStore';
-import { mixins } from '@styles/Mixin';
-import { fetchJoin } from '@utils/api';
+import {loginDone} from '@constants/toast';
+import type {loginStateType} from '@pages/LoginPage';
+import {useUserStore} from '@store/userStore';
+import {mixins} from '@styles/Mixin';
+import {fetchJoin} from '@utils/api';
 
 interface LoginPasswordFormProps {
   onSubmit: (e: loginStateType) => void;
@@ -18,24 +18,26 @@ interface LoginPasswordFormProps {
   loginCurrState: loginStateType;
 }
 
-type LoginPasswordFormType = {
+interface LoginPasswordFormType {
   password: string;
-};
+}
 
-const LoginPasswordForm = ({
-  onSubmit,
-  username,
-  loginCurrState,
-}: LoginPasswordFormProps) => {
+const LoginPasswordFormWrapper = styled.div`
+  ${mixins.flexBox({direction: 'column', align: 'start'})}
+  gap: 32px;
+
+  width: 100%;
+`;
+
+const LoginPasswordForm = ({onSubmit, username, loginCurrState}: LoginPasswordFormProps) => {
   const [join, setJoin] = useState(true);
 
-  const { register, handleSubmit } = useForm<LoginPasswordFormType>();
+  const {register, handleSubmit} = useForm<LoginPasswordFormType>();
   const navigate = useNavigate();
-  const { login } = useUserStore();
+  const {login} = useUserStore();
 
   const LoginPasswordMutation = useMutation({
-    mutationFn: (password: string) =>
-      fetchJoin(username, password, loginCurrState),
+    mutationFn: (password: string) => fetchJoin(username, password, loginCurrState),
     onSuccess: (data) => {
       const loginUser = {
         id: data.id,
@@ -47,13 +49,13 @@ const LoginPasswordForm = ({
       navigate(-1);
       loginDone();
     },
-    onError: (error) => {
+    onError: () => {
       setJoin(false);
-      console.error('Login failed:', error);
+      throw new Error('Login failed');
     },
   });
 
-  const onJoinValid = ({ password }: LoginPasswordFormType) => {
+  const onJoinValid = ({password}: LoginPasswordFormType) => {
     LoginPasswordMutation.mutate(password);
   };
 
@@ -61,9 +63,9 @@ const LoginPasswordForm = ({
     <LoginPasswordFormWrapper onSubmit={handleSubmit(onJoinValid)}>
       <DefaultTextField
         inputState={join ? undefined : 'error'}
-        hasLabel={true}
+        hasLabel
         label="비밀번호를 입렵해주세요"
-        hasHelpMessage={true}
+        hasHelpMessage
         helpMessage={join ? undefined : '로그인을 실패 하였습니다.'}
         helpTestId="passwordHelp"
       >
@@ -83,12 +85,5 @@ const LoginPasswordForm = ({
     </LoginPasswordFormWrapper>
   );
 };
-
-const LoginPasswordFormWrapper = styled.div`
-  ${mixins.flexBox({ direction: 'column', align: 'start' })}
-  gap: 32px;
-
-  width: 100%;
-`;
 
 export default LoginPasswordForm;

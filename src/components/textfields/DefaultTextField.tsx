@@ -1,8 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
 import HelpMessage from '@components/texts/HelpMessage';
-import { zIndex } from '@constants/zIndex';
+import {zIndex} from '@constants/zIndex';
 
 import TextFieldLabel from '../texts/TextFieldLabel';
 
@@ -19,29 +19,6 @@ interface DefaultTextFieldProps {
   helpTestId?: string;
 }
 
-const DefaultTextField = ({
-  inputState = 'default',
-  hasLabel = false,
-  label = '',
-  htmlFor = '',
-  hasHelpMessage = false,
-  helpMessage,
-  children,
-  helpTestId,
-}: DefaultTextFieldProps) => {
-  return (
-    <DefaultTextFieldWrapper>
-      {hasLabel && <TextFieldLabel htmlFor={htmlFor}>{label}</TextFieldLabel>}
-      <InputWrapper inputState={inputState}>{children}</InputWrapper>
-      {hasHelpMessage && !!helpMessage && (
-        <HelpMessage testId={helpTestId} helpMessageTheme={inputState}>
-          {helpMessage}
-        </HelpMessage>
-      )}
-    </DefaultTextFieldWrapper>
-  );
-};
-
 const DefaultTextFieldWrapper = styled.div`
   position: relative;
   z-index: ${zIndex.textField};
@@ -51,8 +28,8 @@ const DefaultTextFieldWrapper = styled.div`
 
 const TextFieldStyle = {
   default: css`
-    ${({ theme }) => {
-      const { colors } = theme;
+    ${({theme}) => {
+      const {colors} = theme;
       return css`
         border: 1px solid ${colors.lightgray};
 
@@ -61,7 +38,7 @@ const TextFieldStyle = {
         }
 
         &:focus {
-          box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.gray};
+          box-shadow: 0 0 0 1px ${colors.gray};
 
           outline: none;
 
@@ -89,45 +66,68 @@ const TextFieldStyle = {
     }}
   `,
   success: css`
-    border: 1px solid ${({ theme }) => theme.colors.success};
+    border: 1px solid ${({theme}) => theme.colors.success};
 
     &:focus {
-      box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.success};
+      box-shadow: 0 0 0 1px ${({theme}) => theme.colors.success};
 
-      color: ${({ theme }) => theme.colors.success};
+      color: ${({theme}) => theme.colors.success};
     }
   `,
   error: css`
-    border: 1px solid ${({ theme }) => theme.colors.error};
+    border: 1px solid ${({theme}) => theme.colors.error};
 
     &:focus {
-      box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.error};
+      box-shadow: 0 0 0 1px ${({theme}) => theme.colors.error};
 
-      color: ${({ theme }) => theme.colors.error};
+      color: ${({theme}) => theme.colors.error};
     }
   `,
 };
 
 const InputWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'inputState',
-})<{ inputState: InputState }>`
+})<{inputState: InputState}>`
   & input {
-    ${({ theme }) => theme.typography.Caption};
-    ${({ inputState }) => TextFieldStyle[inputState] || TextFieldStyle.default};
+    ${({theme}) => theme.typography.Caption};
+    ${({inputState}) => TextFieldStyle[inputState] || TextFieldStyle.default};
     display: block;
 
     width: 100%;
     height: 56px;
     padding: 16px;
 
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({theme}) => theme.colors.white};
 
     cursor: text;
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.gray};
+      color: ${({theme}) => theme.colors.gray};
     }
   }
 `;
+
+const DefaultTextField = ({
+  inputState = 'default',
+  hasLabel = false,
+  label = '',
+  htmlFor = '',
+  hasHelpMessage = false,
+  helpMessage,
+  children,
+  helpTestId,
+}: DefaultTextFieldProps) => {
+  return (
+    <DefaultTextFieldWrapper>
+      {hasLabel && <TextFieldLabel htmlFor={htmlFor}>{label}</TextFieldLabel>}
+      <InputWrapper inputState={inputState}>{children}</InputWrapper>
+      {hasHelpMessage && !!helpMessage && (
+        <HelpMessage testId={helpTestId} helpMessageTheme={inputState}>
+          {helpMessage}
+        </HelpMessage>
+      )}
+    </DefaultTextFieldWrapper>
+  );
+};
 
 export default DefaultTextField;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { mixins } from '@styles/Mixin';
-import { changeKroeaPrice } from '@utils/price';
+import {mixins} from '@styles/Mixin';
+import {changeKroeaPrice} from '@utils/price';
 
 interface PrimaryImageCardProps {
   imgPath: string;
@@ -12,34 +12,13 @@ interface PrimaryImageCardProps {
   testId?: string;
 }
 
-const PrimaryImageCard = ({
-  imgPath,
-  alt,
-  price,
-  children,
-  onClick,
-  testId,
-}: PrimaryImageCardProps) => {
-  return (
-    <PrimaryImageCardWrapper onClick={onClick} data-cy={testId}>
-      <Img alt={alt} src={imgPath} />
-      <Contents>
-        {children}
-        {price !== undefined && (
-          <Price>{`Price: ${changeKroeaPrice(price)}`}</Price>
-        )}
-      </Contents>
-    </PrimaryImageCardWrapper>
-  );
-};
-
 const PrimaryImageCardWrapper = styled.div`
   ${mixins.flexBox({})}
   position: relative;
 
   width: 100%;
   height: ${768 / 2}px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
+  border-bottom: 1px solid ${({theme}) => theme.colors.black};
 
   cursor: pointer;
 `;
@@ -52,8 +31,8 @@ const Img = styled.img`
 `;
 
 const Contents = styled.div`
-  ${mixins.flexBox({ direction: 'column' })}
-  ${({ theme }) => theme.typography.Heading6}
+  ${mixins.flexBox({direction: 'column'})}
+  ${({theme}) => theme.typography.Heading6}
   position: absolute;
   bottom: 24px;
   gap: 4px;
@@ -62,8 +41,20 @@ const Contents = styled.div`
 `;
 
 const Price = styled.p`
-  ${({ theme }) => theme.typography.Caption}
-  color: ${({ theme }) => theme.colors.gray};
+  ${({theme}) => theme.typography.Caption}
+  color: ${({theme}) => theme.colors.gray};
 `;
+
+const PrimaryImageCard = ({imgPath, alt, price, children, onClick, testId}: PrimaryImageCardProps) => {
+  return (
+    <PrimaryImageCardWrapper onClick={onClick} data-cy={testId}>
+      <Img alt={alt} src={imgPath} />
+      <Contents>
+        {children}
+        {price !== undefined && <Price>{`Price: ${changeKroeaPrice(price)}`}</Price>}
+      </Contents>
+    </PrimaryImageCardWrapper>
+  );
+};
 
 export default PrimaryImageCard;

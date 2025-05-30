@@ -1,25 +1,58 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import {useState} from 'react';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import LoginId from '@pages/sections/LoginId';
 import LoginPassword from '@pages/sections/LoginPassword';
-import { useUserStore } from '@store/userStore';
-import { mixins } from '@styles/Mixin';
-import { FormStateType } from 'src/@types/state';
+import {useUserStore} from '@store/userStore';
+import {mixins} from '@styles/Mixin';
+import type {FormStateType} from 'src/@types/state';
 
 export type loginStateType = 'signin' | 'join' | 'signup' | 'done';
 
+const LoginMessageWrapper = styled.div``;
+
+const LoginSuccessWrapper = styled.div`
+  ${mixins.flexBox({direction: 'column', justify: 'space-evenly'})}
+  ${({theme}) => theme.typography.Heading5}
+  width: 100%;
+  height: 55vh;
+  margin: 0 auto;
+  padding: 80px 30px;
+  border-bottom: 1px solid ${({theme}) => theme.colors.black};
+`;
+
+const LoginPageWrapper = styled.div`
+  ${({theme}) => theme.typography.Heading2}
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+
+  padding: 100px 40px 20vh;
+  border-bottom: 1px solid ${({theme}) => theme.colors.black};
+`;
+
+const LoginMessage = ({loginCurrState}: {loginCurrState: loginStateType}) => {
+  switch (loginCurrState) {
+    case 'signin':
+      return <>안녕하세요! 오늘의 꽃에 오신 것을 환영합니다.</>;
+    case 'join':
+      return <>로그인을 진행해주세요</>;
+    case 'signup':
+      return <>회원가입을 진행해주세요</>;
+    default:
+      return null;
+  }
+};
+
 const LoginPage = () => {
-  const [loginCurrState, setLoginCurrState] =
-    useState<loginStateType>('signin');
+  const [loginCurrState, setLoginCurrState] = useState<loginStateType>('signin');
   const [loginIdState, setLoginIdState] = useState<FormStateType>('curr');
-  const [loginPasswordState, setLoginPasswordState] =
-    useState<FormStateType>('yet');
+  const [loginPasswordState, setLoginPasswordState] = useState<FormStateType>('yet');
   const [username, setUsername] = useState('');
 
-  const { isLoggedIn } = useUserStore();
+  const {isLoggedIn} = useUserStore();
   const navigate = useNavigate();
 
   const goToMainPage = () => navigate('/');
@@ -45,9 +78,7 @@ const LoginPage = () => {
       {isLoggedIn ? (
         <LoginSuccessWrapper>
           로그인이 완료되었습니다
-          <PrimaryButton onClick={goToMainPage}>
-            메인 페이지로 돌아가기
-          </PrimaryButton>
+          <PrimaryButton onClick={goToMainPage}>메인 페이지로 돌아가기</PrimaryButton>
         </LoginSuccessWrapper>
       ) : (
         <LoginPageWrapper>
@@ -72,44 +103,5 @@ const LoginPage = () => {
     </>
   );
 };
-
-const LoginMessage = ({
-  loginCurrState,
-}: {
-  loginCurrState: loginStateType;
-}) => {
-  switch (loginCurrState) {
-    case 'signin':
-      return <>안녕하세요! 오늘의 꽃에 오신 것을 환영합니다.</>;
-    case 'join':
-      return <>로그인을 진행해주세요</>;
-    case 'signup':
-      return <>회원가입을 진행해주세요</>;
-    default:
-      return null;
-  }
-};
-
-const LoginMessageWrapper = styled.div``;
-
-const LoginSuccessWrapper = styled.div`
-  ${mixins.flexBox({ direction: 'column', justify: 'space-evenly' })}
-  ${({ theme }) => theme.typography.Heading5}
-  width: 100%;
-  height: 55vh;
-  margin: 0 auto;
-  padding: 80px 30px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
-`;
-
-const LoginPageWrapper = styled.div`
-  ${({ theme }) => theme.typography.Heading2}
-  display: flex;
-  flex-direction: column;
-  gap: 10vh;
-
-  padding: 100px 40px 20vh;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
-`;
 
 export default LoginPage;

@@ -14,6 +14,15 @@ export interface ActionCardAndImageCardListProps {
   imgTestId?: string;
 }
 
+const ActionCardAndImageCardListWrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  & > div:nth-child(odd) {
+    border-right: 1px solid ${({theme}) => theme.colors.black};
+  }
+`;
+
 const ActionCardAndImageCardList = ({
   index,
   onClick,
@@ -30,33 +39,23 @@ const ActionCardAndImageCardList = ({
         <ActionCard
           onClick={onClick}
           buttonText={buttonText}
-          hasRightIcon={true}
+          hasRightIcon
           testId={actionTestId}
           buttonTestId="actionCardBtn"
         >
           {children}
         </ActionCard>
-        <PrimaryImageCard
-          alt={alt}
-          imgPath={imgPath}
-          onClick={onClick}
-          testId={imgTestId}
-        />
+        <PrimaryImageCard alt={alt} imgPath={imgPath} onClick={onClick} testId={imgTestId} />
       </ActionCardAndImageCardListWrapper>
     );
   } else {
     return (
       <ActionCardAndImageCardListWrapper>
-        <PrimaryImageCard
-          alt={alt}
-          imgPath={imgPath}
-          onClick={onClick}
-          testId={imgTestId}
-        />
+        <PrimaryImageCard alt={alt} imgPath={imgPath} onClick={onClick} testId={imgTestId} />
         <ActionCard
           onClick={onClick}
           buttonText={buttonText}
-          hasLeftIcon={true}
+          hasLeftIcon
           testId={actionTestId}
           buttonTestId="actionCardBtn"
         >
@@ -66,14 +65,5 @@ const ActionCardAndImageCardList = ({
     );
   }
 };
-
-const ActionCardAndImageCardListWrapper = styled.section`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  & > div:nth-child(odd) {
-    border-right: 1px solid ${({ theme }) => theme.colors.black};
-  }
-`;
 
 export default ActionCardAndImageCardList;

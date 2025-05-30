@@ -1,12 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
-import { mixins } from '@styles/Mixin';
+import {mixins} from '@styles/Mixin';
 
 type IconButtonSize = 'small' | 'medium' | 'large';
 
 interface IconButtonProps {
   size?: IconButtonSize;
-  IconComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+  IconComponent: string;
   ariaLabel: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   testId?: string;
@@ -15,25 +15,6 @@ interface IconButtonProps {
 interface IconButtonWrapperProps {
   size: IconButtonSize;
 }
-
-const IconButton = ({
-  size = 'small',
-  IconComponent,
-  ariaLabel,
-  onClick,
-  testId,
-}: IconButtonProps) => {
-  return (
-    <IconButtonWrapper
-      size={size}
-      onClick={onClick}
-      aria-label={ariaLabel}
-      data-cy={testId}
-    >
-      <IconComponent />
-    </IconButtonWrapper>
-  );
-};
 
 const sizeStyles = {
   small: css`
@@ -56,7 +37,15 @@ const IconButtonWrapper = styled.button.withConfig({
   shouldForwardProp: (prop) => prop !== 'size',
 })<IconButtonWrapperProps>`
   ${mixins.flexBox({})}
-  ${({ size }) => sizeStyles[size]}
+  ${({size}) => sizeStyles[size]}
 `;
+
+const IconButton = ({size = 'small', IconComponent, ariaLabel, onClick, testId}: IconButtonProps) => {
+  return (
+    <IconButtonWrapper size={size} onClick={onClick} aria-label={ariaLabel} data-cy={testId}>
+      <IconComponent />
+    </IconButtonWrapper>
+  );
+};
 
 export default IconButton;

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { ReactComponent as Check } from '@assets/icons/wght300/Check.svg';
+import Check from '@assets/icons/wght300/Check.svg';
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import ProductCardInfoList from '@components/lists/ProductCardInfoList';
-import { mixins } from '@styles/Mixin';
+import {mixins} from '@styles/Mixin';
 
 interface ProductCardProps {
   alt: string;
@@ -15,6 +15,19 @@ interface ProductCardProps {
   testId?: string;
   buttonTestId?: string;
 }
+
+const ProductCardWrapper = styled.div``;
+
+const Contents = styled.div`
+  ${mixins.flexBox({})}
+  border: 1px solid ${({theme}) => theme.colors.lightgray};
+`;
+
+const Img = styled.img`
+  width: 50%;
+  height: 50%;
+  border-right: 1px solid ${({theme}) => theme.colors.lightgray};
+`;
 
 const ProductCard = ({
   alt,
@@ -30,33 +43,13 @@ const ProductCard = ({
     <ProductCardWrapper data-cy={testId}>
       <Contents>
         <Img alt={alt} src={imgPath} />
-        <ProductCardInfoList infoItems={infoItems}>
-          {children}
-        </ProductCardInfoList>
+        <ProductCardInfoList infoItems={infoItems}>{children}</ProductCardInfoList>
       </Contents>
-      <PrimaryButton
-        onClick={onClick}
-        hasLeftIcon={select}
-        CustomButton={Check}
-        testId={buttonTestId}
-      >
+      <PrimaryButton onClick={onClick} hasLeftIcon={select} CustomButton={Check} testId={buttonTestId}>
         select
       </PrimaryButton>
     </ProductCardWrapper>
   );
 };
-
-const ProductCardWrapper = styled.div``;
-
-const Contents = styled.div`
-  ${mixins.flexBox({})}
-  border: 1px solid ${({ theme }) => theme.colors.lightgray};
-`;
-
-const Img = styled.img`
-  width: 50%;
-  height: 50%;
-  border-right: 1px solid ${({ theme }) => theme.colors.lightgray};
-`;
 
 export default ProductCard;

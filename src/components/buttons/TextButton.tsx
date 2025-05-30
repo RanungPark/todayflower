@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowLeft } from '@assets/icons/wght300/ArrowLeft.svg';
-import { ReactComponent as ArrowRight } from '@assets/icons/wght300/ArrowRight.svg';
-import { mixins } from '@styles/Mixin';
+import ArrowLeft from '@assets/icons/wght300/ArrowLeft.svg';
+import ArrowRight from '@assets/icons/wght300/ArrowRight.svg';
+import {mixins} from '@styles/Mixin';
 
 interface TextButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -15,6 +15,43 @@ interface TextButtonProps {
   testId?: string;
 }
 
+const TextButtonWrapper = styled.button`
+  ${mixins.flexBox({})}
+  ${({theme}) => theme.typography.Links}
+  position: relative;
+  gap: 4px;
+
+  background-color: inherit;
+
+  cursor: pointer;
+
+  &:hover {
+    color: ${({theme}) => theme.colors.gray};
+  }
+
+  &:active {
+    color: ${({theme}) => theme.colors.black};
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &:hover::after,
+  &:active::after {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+
+    width: 100%;
+    height: 0.5px;
+
+    background-color: ${({theme}) => theme.colors.black};
+
+    content: '';
+  }
+`;
+
 const TextButton = ({
   onClick,
   children,
@@ -25,15 +62,6 @@ const TextButton = ({
   ariaLabel,
   testId,
 }: TextButtonProps) => {
-  const renderIcon = (position: 'left' | 'right') => {
-    if (position === 'left') {
-      return renderLeftIcon();
-    } else if (position === 'right') {
-      return renderRightIcon();
-    }
-    return null;
-  };
-
   const renderLeftIcon = () => {
     if (hasLeftIcon) {
       return CustomButton && ariaLabel ? (
@@ -56,6 +84,15 @@ const TextButton = ({
     return null;
   };
 
+  const renderIcon = (position: 'left' | 'right') => {
+    if (position === 'left') {
+      return renderLeftIcon();
+    } else if (position === 'right') {
+      return renderRightIcon();
+    }
+    return null;
+  };
+
   return (
     <TextButtonWrapper onClick={onClick} disabled={disabled} data-cy={testId}>
       {renderIcon('left')}
@@ -64,42 +101,5 @@ const TextButton = ({
     </TextButtonWrapper>
   );
 };
-
-const TextButtonWrapper = styled.button`
-  ${mixins.flexBox({})}
-  ${({ theme }) => theme.typography.Links}
-  position: relative;
-  gap: 4px;
-
-  background-color: inherit;
-
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.gray};
-  }
-
-  &:active {
-    color: ${({ theme }) => theme.colors.black};
-  }
-
-  &:disabled {
-    pointer-events: none;
-  }
-
-  &:hover::after,
-  &:active::after {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-
-    width: 100%;
-    height: 0.5px;
-
-    background-color: ${({ theme }) => theme.colors.black};
-
-    content: '';
-  }
-`;
 
 export default TextButton;

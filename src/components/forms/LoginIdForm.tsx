@@ -1,35 +1,42 @@
-import { useMutation } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
+import {useMutation} from '@tanstack/react-query';
+import {useForm} from 'react-hook-form';
 import styled from 'styled-components';
 
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import DefaultTextField from '@components/textfields/DefaultTextField';
-import { REG_PHONE } from '@constants/reg';
-import { loginStateType } from '@pages/LoginPage';
-import { mixins } from '@styles/Mixin';
-import { fetchLogin } from '@utils/api';
+import {REG_PHONE} from '@constants/reg';
+import type {loginStateType} from '@pages/LoginPage';
+import {mixins} from '@styles/Mixin';
+import {fetchLogin} from '@utils/api';
 
 interface LoginIdFormProps {
   onSubmit: (e: loginStateType) => void;
   setUsername: (e: string) => void;
 }
 
-type LoginIdFormType = {
+interface LoginIdFormType {
   username: string;
-};
+}
 
-const LoginIdForm = ({ onSubmit, setUsername }: LoginIdFormProps) => {
+const LoginIdFormWrapper = styled.form`
+  ${mixins.flexBox({direction: 'column', align: 'start'})}
+  gap: 32px;
+
+  width: 100%;
+`;
+
+const LoginIdForm = ({onSubmit, setUsername}: LoginIdFormProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
     getValues,
   } = useForm<LoginIdFormType>();
 
   const LoginIdMutation = useMutation({
     mutationFn: (username: string) => fetchLogin(username),
     onSuccess: (data) => {
-      const { message } = data;
+      const {message} = data;
       const username = getValues().username;
 
       if (message === '로그인 진행') {
@@ -40,12 +47,12 @@ const LoginIdForm = ({ onSubmit, setUsername }: LoginIdFormProps) => {
         onSubmit('signup');
       }
     },
-    onError: (error) => {
-      console.error('Login failed:', error);
+    onError: () => {
+      throw new Error('Login failed');
     },
   });
 
-  const onLoginValid = ({ username }: LoginIdFormType) => {
+  const onLoginValid = ({username}: LoginIdFormType) => {
     LoginIdMutation.mutate(username);
   };
 
@@ -53,9 +60,9 @@ const LoginIdForm = ({ onSubmit, setUsername }: LoginIdFormProps) => {
     <LoginIdFormWrapper>
       <DefaultTextField
         inputState={errors.username ? 'error' : undefined}
-        hasLabel={true}
+        hasLabel
         label="휴대폰 번호를 사용하여 가입 또는 로그인하기"
-        hasHelpMessage={true}
+        hasHelpMessage
         helpMessage={errors.username?.message}
         helpTestId="phoneHelp"
       >
@@ -78,12 +85,5 @@ const LoginIdForm = ({ onSubmit, setUsername }: LoginIdFormProps) => {
     </LoginIdFormWrapper>
   );
 };
-
-const LoginIdFormWrapper = styled.form`
-  ${mixins.flexBox({ direction: 'column', align: 'start' })}
-  gap: 32px;
-
-  width: 100%;
-`;
 
 export default LoginIdForm;

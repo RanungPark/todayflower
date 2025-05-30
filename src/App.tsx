@@ -1,22 +1,31 @@
-import { Toaster } from 'react-hot-toast';
-import { Outlet } from 'react-router';
+// import {BrowserRouter, Route, Routes} from 'react-router-dom';
+// import Layout from '@pages/Layout';
+// import HomePage from '@pages/HomePage';
+// import CategoryPage from '@pages/CategoryPage';
+// import LoginPage from '@pages/LoginPage';
+// import NotFoundPage from '@pages/NotFoundPage';
+// import CheckoutPage from '@pages/CheckoutPage';
+// import ProductsPage from '@pages/ProductsPage';
+import '@todayflower-public/ui/style.css';
 
-import Footer from '@components/publics/Footer';
-import Header from '@components/publics/Header';
-import Layout from '@components/publics/Layout';
-import useScrollToTop from '@hooks/useScrollToTop';
+import {Button} from '@todayflower-public/ui';
 
-const App = () => {
-  useScrollToTop();
-
+function App() {
   return (
-    <Layout>
-      <Header />
-      <Outlet />
-      <Footer />
-      <Toaster position="top-center" reverseOrder={false} />
-    </Layout>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path={'/'} element={<Layout />}>
+    //       <Route path="" element={<HomePage />} />
+    //       <Route path="login" element={<LoginPage />} />
+    //       <Route path="categories/:categoryName" element={<CategoryPage />} />
+    //       <Route path="categories/:categoryName/products/:productId" element={<ProductsPage />} />
+    //       <Route path="checkout" element={<CheckoutPage />} />
+    //       <Route path="/*" element={<NotFoundPage />} />
+    //     </Route>
+    //   </Routes>
+    // </BrowserRouter>
+    <Button>hello</Button>
   );
-};
+}
 
 export default App;

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import LoginPasswordForm from '@components/forms/LoginPasswordForm';
 import CompleteTextFiled from '@components/textfields/CompleteTextFiled';
-import { loginStateType } from '@pages/LoginPage';
-import { FormStateType } from 'src/@types/state';
+import type {loginStateType} from '@pages/LoginPage';
+import type {FormStateType} from 'src/@types/state';
 
 interface LoginPasswordProps {
   loginState: FormStateType;
@@ -16,31 +16,18 @@ interface LoginPasswordForm {
   password: string;
 }
 
-const LoginPassword = ({
-  loginState,
-  onSubmit,
-  username,
-  loginCurrState,
-}: LoginPasswordProps) => {
+const LoginPasswordWrapper = styled.div``;
+
+const LoginPassword = ({loginState, onSubmit, username, loginCurrState}: LoginPasswordProps) => {
   return (
     <LoginPasswordWrapper>
-      {loginState === 'yet' && (
-        <CompleteTextFiled disabled={true}>
-          비밀번호를 입력해주세요.
-        </CompleteTextFiled>
-      )}
+      {loginState === 'yet' && <CompleteTextFiled disabled>비밀번호를 입력해주세요.</CompleteTextFiled>}
 
       {loginState === 'curr' && (
-        <LoginPasswordForm
-          onSubmit={onSubmit}
-          username={username}
-          loginCurrState={loginCurrState}
-        />
+        <LoginPasswordForm onSubmit={onSubmit} username={username} loginCurrState={loginCurrState} />
       )}
     </LoginPasswordWrapper>
   );
 };
-
-const LoginPasswordWrapper = styled.div``;
 
 export default LoginPassword;

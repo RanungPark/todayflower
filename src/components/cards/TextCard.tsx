@@ -6,7 +6,25 @@ interface TextCardProps {
   label?: string;
 }
 
-const TextCard = ({ title, children, label = '' }: TextCardProps) => {
+const TextCardWrapper = styled.div`
+  ${({theme}) => theme.typography.Body}
+  width: 100%;
+  height: auto;
+  padding: 80px;
+  border-bottom: 1px solid ${({theme}) => theme.colors.black};
+`;
+
+const Label = styled.p`
+  ${({theme}) => theme.typography.Caption}
+  margin-bottom: 24px;
+`;
+
+const Title = styled.h3`
+  ${({theme}) => theme.typography.Heading3}
+  margin-bottom: 16px;
+`;
+
+const TextCard = ({title, children, label = ''}: TextCardProps) => {
   return (
     <TextCardWrapper>
       {label && <Label>{label}</Label>}
@@ -15,23 +33,5 @@ const TextCard = ({ title, children, label = '' }: TextCardProps) => {
     </TextCardWrapper>
   );
 };
-
-const TextCardWrapper = styled.div`
-  ${({ theme }) => theme.typography.Body}
-  width: 100%;
-  height: auto;
-  padding: 80px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
-`;
-
-const Label = styled.p`
-  ${({ theme }) => theme.typography.Caption}
-  margin-bottom: 24px;
-`;
-
-const Title = styled.h3`
-  ${({ theme }) => theme.typography.Heading3}
-  margin-bottom: 16px;
-`;
 
 export default TextCard;

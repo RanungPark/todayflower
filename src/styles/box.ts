@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import {css} from 'styled-components';
 
 export function box() {
   return Array(100)
@@ -41,19 +41,19 @@ export function box() {
             padding-left: ${index * size}px;
           }
           &.b-${index} {
-            border: ${index}px solid ${({ theme }) => theme.colors.black};
+            border: ${index}px solid ${({theme}) => theme.colors.black};
           }
           &.bt-${index} {
-            border-top: ${index}px solid ${({ theme }) => theme.colors.black};
+            border-top: ${index}px solid ${({theme}) => theme.colors.black};
           }
           &.bb-${index} {
-            border-bottom: ${index}px solid ${({ theme }) => theme.colors.black};
+            border-bottom: ${index}px solid ${({theme}) => theme.colors.black};
           }
           &.br-${index} {
-            border-right: ${index}px solid ${({ theme }) => theme.colors.black};
+            border-right: ${index}px solid ${({theme}) => theme.colors.black};
           }
           &.bl-${index} {
-            border-left: ${index}px solid ${({ theme }) => theme.colors.black};
+            border-left: ${index}px solid ${({theme}) => theme.colors.black};
           }
         `;
       },

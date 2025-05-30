@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import {useContext, useState} from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as Check } from '@assets/icons/wght300/Check.svg';
-import { CheckboxContext } from '@contexts/CheckboxContext';
+import Check from '@assets/icons/wght300/Check.svg';
+import {CheckboxContext} from '@contexts/CheckboxContext';
 
 interface CheckboxProps {
   name?: string;
@@ -11,45 +11,6 @@ interface CheckboxProps {
   onChange?: (checked: string) => void;
   isGrop?: boolean;
 }
-
-const Checkbox = ({
-  name,
-  value,
-  children,
-  onChange = () => {},
-  isGrop = true,
-}: CheckboxProps) => {
-  const context = useContext(CheckboxContext);
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = e.target;
-    checked ? onChange(value ?? children) : onChange('');
-  };
-
-  const isGroupChecked = isGrop && context.isChecked(value ?? children);
-  const toggleGroupValue = isGrop ? context.toggleValue : null;
-
-  return (
-    <CheckboxWrapper>
-      <Input
-        type="checkbox"
-        name={name}
-        value={value ?? children}
-        checked={isGrop ? isGroupChecked : checked}
-        onChange={
-          isGrop
-            ? ({ target: { checked } }) =>
-                toggleGroupValue!({ checked, value: value ?? children })
-            : handleChange
-        }
-        onClick={() => !isGrop && setChecked((prev) => !prev)}
-      />
-      <Check />
-      <Value>{children}</Value>
-    </CheckboxWrapper>
-  );
-};
 
 const CheckboxWrapper = styled.label`
   position: relative;
@@ -69,14 +30,14 @@ const CheckboxWrapper = styled.label`
   }
 
   &:active {
-    color: ${({ theme }) => theme.colors.gray};
+    color: ${({theme}) => theme.colors.gray};
 
     & input {
-      border: 1px solid ${({ theme }) => theme.colors.darkgray};
+      border: 1px solid ${({theme}) => theme.colors.darkgray};
     }
 
     & path {
-      fill: ${({ theme }) => theme.colors.gray};
+      fill: ${({theme}) => theme.colors.gray};
     }
   }
 `;
@@ -85,9 +46,9 @@ const Input = styled.input`
   width: 24px;
   height: 24px;
   margin-right: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.black};
+  border: 1px solid ${({theme}) => theme.colors.black};
 
-  background-color: ${({ theme }) => theme.colors.lightgray};
+  background-color: ${({theme}) => theme.colors.lightgray};
 
   cursor: pointer;
 
@@ -104,8 +65,49 @@ const Input = styled.input`
 `;
 
 const Value = styled.p`
-  ${({ theme }) => theme.typography.CaptionBold}
+  ${({theme}) => theme.typography.CaptionBold}
   display: inline-block;
 `;
+
+const Checkbox = ({
+  name,
+  value,
+  children,
+  onChange = () => {
+    return null;
+  },
+  isGrop = true,
+}: CheckboxProps) => {
+  const context = useContext(CheckboxContext);
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {checked: targetChecked} = e.target;
+    targetChecked ? onChange(value ?? children) : onChange('');
+  };
+
+  const isGroupChecked = isGrop && context.isChecked(value ?? children);
+  const toggleGroupValue = isGrop ? context.toggleValue : null;
+
+  return (
+    <CheckboxWrapper>
+      <Input
+        type="checkbox"
+        name={name}
+        value={value ?? children}
+        checked={isGrop ? isGroupChecked : checked}
+        onChange={
+          isGrop
+            ? ({target: {checked: InputChecked}}) =>
+                toggleGroupValue!({checked: InputChecked, value: value ?? children})
+            : handleChange
+        }
+        onClick={() => !isGrop && setChecked((prev) => !prev)}
+      />
+      <Check />
+      <Value>{children}</Value>
+    </CheckboxWrapper>
+  );
+};
 
 export default Checkbox;

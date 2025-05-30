@@ -14,17 +14,13 @@ export const fetchProduct = async (categoryName: string, id: string) => {
   return response.json();
 };
 
-export const fetchJoin = async (
-  username: string,
-  password: string,
-  type: string,
-) => {
+export const fetchJoin = async (username: string, password: string, type: string) => {
   const response = await fetch(`/join`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ username, password, type }),
+    body: JSON.stringify({username, password, type}),
   });
 
   if (!response.ok) {
@@ -40,7 +36,7 @@ export const fetchLogin = async (username: string) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ username }),
+    body: JSON.stringify({username}),
   });
 
   if (!response.ok) {

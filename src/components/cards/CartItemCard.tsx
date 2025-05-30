@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import TextButton from '@components/buttons/TextButton';
-import { mixins } from '@styles/Mixin';
-import { changeKroeaPrice } from '@utils/price';
+import {mixins} from '@styles/Mixin';
+import {changeKroeaPrice} from '@utils/price';
 
 interface CartItemCardProps {
   children: string;
@@ -14,6 +14,38 @@ interface CartItemCardProps {
   onClick: (e: React.MouseEvent) => void;
   testId?: string;
 }
+
+const CartItemCardPropsWrapper = styled.li`
+  ${mixins.flexBox({justify: 'space-between'})}
+  ${({theme}) => theme.typography.Subtitle}
+`;
+
+const Img = styled.img`
+  width: 160px;
+  height: 160px;
+  border: 1px solid ${({theme}) => theme.colors.black};
+  object-fit: cover;
+`;
+
+const Name = styled.p``;
+const Quantity = styled.p``;
+const Price = styled.p``;
+
+const Unit = styled.span`
+  ${({theme}) => theme.typography.Body}
+`;
+
+const CartItemCardInfosWrapper = styled.div`
+  ${mixins.flexBox({direction: 'column', align: 'start'})}
+  flex: 1;
+  gap: 8px;
+
+  margin-left: 16px;
+
+  & > p:nth-child(2) {
+    ${({theme}) => theme.typography.Body}
+  }
+`;
 
 const CartItemCard = ({
   children,
@@ -49,37 +81,5 @@ const CartItemCard = ({
     </CartItemCardPropsWrapper>
   );
 };
-
-const CartItemCardPropsWrapper = styled.li`
-  ${mixins.flexBox({ justify: 'space-between' })}
-  ${({ theme }) => theme.typography.Subtitle}
-`;
-
-const Img = styled.img`
-  width: 160px;
-  height: 160px;
-  border: 1px solid ${({ theme }) => theme.colors.black};
-  object-fit: cover;
-`;
-
-const Name = styled.p``;
-const Quantity = styled.p``;
-const Price = styled.p``;
-
-const Unit = styled.span`
-  ${({ theme }) => theme.typography.Body}
-`;
-
-const CartItemCardInfosWrapper = styled.div`
-  ${mixins.flexBox({ direction: 'column', align: 'start' })}
-  flex: 1;
-  gap: 8px;
-
-  margin-left: 16px;
-
-  & > p:nth-child(2) {
-    ${({ theme }) => theme.typography.Body}
-  }
-`;
 
 export default CartItemCard;

@@ -73,7 +73,7 @@ type FreshenersType =
 
 type OthersType = 'home_rep';
 
-type CategoryMapping = {
+interface CategoryMapping {
   aroma_candles: AromaCandlesType;
   designer_vases: DesignerVasesType;
   dried_flowers: DriedFlowersType;
@@ -81,7 +81,7 @@ type CategoryMapping = {
   fresheners: FreshenersType;
   live_plants: LivePlantsType;
   others: OthersType;
-};
+}
 
 type CategoryItemType<T extends CategoryType> = CategoryMapping[T];
 
@@ -90,25 +90,9 @@ interface FetchImgURL<T extends CategoryType> {
   name: CategoryItemType<T>;
 }
 
-type FitType =
-  | 'clamp'
-  | 'clip'
-  | 'crop'
-  | 'fill'
-  | 'fillmax'
-  | 'max'
-  | 'min'
-  | 'scale';
+type FitType = 'clamp' | 'clip' | 'crop' | 'fill' | 'fillmax' | 'max' | 'min' | 'scale';
 
-type CropType =
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right'
-  | 'faces'
-  | 'entropy'
-  | 'edges'
-  | 'focalpoint';
+type CropType = 'top' | 'bottom' | 'left' | 'right' | 'faces' | 'entropy' | 'edges' | 'focalpoint';
 
 type autoType = 'compress' | 'enhance' | 'true' | 'format' | 'redeye';
 
@@ -121,21 +105,11 @@ interface ImgOptimization {
   q?: number;
 }
 
-export const fetchImgURL = <T extends CategoryType>({
-  category,
-  name,
-}: FetchImgURL<T>) => {
+export const fetchImgURL = <T extends CategoryType>({category, name}: FetchImgURL<T>) => {
   return `https://todayflower.imgix.net/${category}/${name}.jpg`;
 };
 
-export const imgOptimization = ({
-  width,
-  height,
-  fit,
-  crop,
-  auto = ['compress'],
-  q,
-}: ImgOptimization) => {
+export const imgOptimization = ({width, height, fit, crop, auto = ['compress'], q}: ImgOptimization) => {
   const widthString = `w=${width}`;
   const heightString = `h=${height}`;
   const fitString = fit ? `fit=${fit}` : '';

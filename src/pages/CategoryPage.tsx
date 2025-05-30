@@ -1,13 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate, useParams } from 'react-router-dom';
+import {useQuery} from '@tanstack/react-query';
+import {useNavigate, useParams} from 'react-router-dom';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import BackgroundImageCard from '@components/cards/BackgroundImageCard';
 import PrimaryImageCard from '@components/cards/PrimaryImageCard';
-import { fetchCategory } from '@utils/api';
-import { imgOptimization } from '@utils/img';
-import { ProductType, ProductBgType } from 'src/@types/product';
+import {fetchCategory} from '@utils/api';
+import {imgOptimization} from '@utils/img';
+import type {ProductType, ProductBgType} from 'src/@types/product';
 
 import CategoryLoading from './sections/CategoryLoading';
 
@@ -16,11 +15,22 @@ interface ICategory {
   productBg: ProductBgType;
 }
 
+const CategoryPageWrapper = styled.main``;
+
+const CategoryCardList = styled.section`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  & > div:nth-child(odd) {
+    border-right: 1px solid ${({theme}) => theme.colors.black};
+  }
+`;
+
 const CategoryPage = () => {
-  const { categoryName } = useParams();
+  const {categoryName} = useParams();
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useQuery<ICategory>({
+  const {data, isLoading, error} = useQuery<ICategory>({
     queryKey: [categoryName],
     queryFn: () => fetchCategory(categoryName!),
   });
@@ -34,24 +44,20 @@ const CategoryPage = () => {
     return null;
   }
 
-  const { productBg, products } = data;
+  const {productBg, products} = data;
 
   return (
     <CategoryPageWrapper>
-      <BackgroundImageCard
-        imgPath={
-          productBg.imgPath + imgOptimization({ width: 800, height: 800 })
-        }
-      >
+      <BackgroundImageCard imgPath={productBg.imgPath + imgOptimization({width: 800, height: 800})}>
         {productBg.title}
       </BackgroundImageCard>
       <CategoryCardList>
-        {products.map(({ id, name, price, imgPath, category }) => (
+        {products.map(({id, name, price, imgPath, category}) => (
           <PrimaryImageCard
-            key={uuidv4()}
+            key={id}
             alt={name}
             onClick={() => navigate(`products/${id}`)}
-            imgPath={imgPath + imgOptimization({ width: 500, height: 500 })}
+            imgPath={imgPath + imgOptimization({width: 500, height: 500})}
             price={price}
             testId={`${category}_${id}`}
           >
@@ -62,16 +68,5 @@ const CategoryPage = () => {
     </CategoryPageWrapper>
   );
 };
-
-const CategoryPageWrapper = styled.main``;
-
-const CategoryCardList = styled.section`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  & > div:nth-child(odd) {
-    border-right: 1px solid ${({ theme }) => theme.colors.black};
-  }
-`;
 
 export default CategoryPage;

@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
-import { ReactComponent as CheckCircle } from '@assets/icons/wght300/CheckCircle.svg';
-import { ReactComponent as CrossCircle } from '@assets/icons/wght300/CrossCircle.svg';
-import { mixins } from '@styles/Mixin';
+import CheckCircle from '@assets/icons/wght300/CheckCircle.svg';
+import CrossCircle from '@assets/icons/wght300/CrossCircle.svg';
+import {mixins} from '@styles/Mixin';
 
 type HelpMessageTheme = 'default' | 'error' | 'success';
 
@@ -12,49 +12,28 @@ interface HelpMessageProps {
   testId?: string;
 }
 
-type HelpMessageChildrenWrapperProps = Pick<
-  HelpMessageProps,
-  'helpMessageTheme'
->;
-
-const HelpMessage = ({
-  children,
-  helpMessageTheme = 'default',
-  testId,
-}: HelpMessageProps) => {
-  return (
-    <HelpMessageWrapper helpMessageTheme={helpMessageTheme}>
-      {helpMessageTheme === 'error' && (
-        <CrossCircle aria-label="cross circle" />
-      )}
-      {helpMessageTheme === 'success' && (
-        <CheckCircle aria-label="check circle" />
-      )}
-      <Text data-cy={testId}>{children}</Text>
-    </HelpMessageWrapper>
-  );
-};
+type HelpMessageChildrenWrapperProps = Pick<HelpMessageProps, 'helpMessageTheme'>;
 
 const helpMessageStyle = {
   default: css`
-    color: ${({ theme }) => theme.colors.gray};
+    color: ${({theme}) => theme.colors.gray};
 
     & path {
-      fill: ${({ theme }) => theme.colors.gray};
+      fill: ${({theme}) => theme.colors.gray};
     }
   `,
   success: css`
-    color: ${({ theme }) => theme.colors.success};
+    color: ${({theme}) => theme.colors.success};
 
     & path {
-      fill: ${({ theme }) => theme.colors.success};
+      fill: ${({theme}) => theme.colors.success};
     }
   `,
   error: css`
-    color: ${({ theme }) => theme.colors.error};
+    color: ${({theme}) => theme.colors.error};
 
     & path {
-      fill: ${({ theme }) => theme.colors.error};
+      fill: ${({theme}) => theme.colors.error};
     }
   `,
 };
@@ -63,9 +42,8 @@ const HelpMessageWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'helpMessageTheme',
 })<HelpMessageChildrenWrapperProps>`
   ${mixins.flexBox({})};
-  ${({ theme }) => theme.typography.CaptionSmall};
-  ${({ helpMessageTheme }) =>
-    helpMessageStyle[helpMessageTheme] || helpMessageStyle.default};
+  ${({theme}) => theme.typography.CaptionSmall};
+  ${({helpMessageTheme}) => helpMessageStyle[helpMessageTheme] || helpMessageStyle.default};
   position: absolute;
   bottom: -20px;
 
@@ -78,5 +56,15 @@ const HelpMessageWrapper = styled.div.withConfig({
 `;
 
 const Text = styled.p``;
+
+const HelpMessage = ({children, helpMessageTheme = 'default', testId}: HelpMessageProps) => {
+  return (
+    <HelpMessageWrapper helpMessageTheme={helpMessageTheme}>
+      {helpMessageTheme === 'error' && <CrossCircle aria-label="cross circle" />}
+      {helpMessageTheme === 'success' && <CheckCircle aria-label="check circle" />}
+      <Text data-cy={testId}>{children}</Text>
+    </HelpMessageWrapper>
+  );
+};
 
 export default HelpMessage;

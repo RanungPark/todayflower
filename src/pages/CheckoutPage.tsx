@@ -1,27 +1,35 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import {useState} from 'react';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import BreadCrumb from '@components/utilities/BreadCrumb';
-import { paymentsDone } from '@constants/toast';
-import {
-  checkout1stStepDatas,
-  checkout2ndStepDatas,
-  checkout3rdStepDatas,
-} from '@data/inputDatas';
+import {paymentsDone} from '@constants/toast';
+import {checkout1stStepDatas, checkout2ndStepDatas, checkout3rdStepDatas} from '@data/inputDatas';
 import CheckoutSummary from '@pages/sections/CheckoutSummary';
-import { useCartStore } from '@store/cartStore';
-import { mixins } from '@styles/Mixin';
-import { FormStateType } from 'src/@types/state';
+import {useCartStore} from '@store/cartStore';
+import {mixins} from '@styles/Mixin';
+import type {FormStateType} from 'src/@types/state';
 
 import CheckoutStep from './sections/CheckoutStep';
 
-type CheckoutStepsState = {
+interface CheckoutStepsState {
   first: FormStateType;
   second: FormStateType;
   third: FormStateType;
-};
+}
+
+const CheckoutPagetWrapper = styled.section`
+  padding-bottom: 80px;
+  border-bottom: 1px solid ${({theme}) => theme.colors.black};
+`;
+
+const BreadCrumbWrapper = styled.div`
+  ${mixins.flexBox({justify: 'start'})}
+  gap: 16px;
+
+  width: 100%;
+  padding: 40px 0 0 80px;
+`;
 
 const CheckoutPage = () => {
   const [stepsState, setStepsState] = useState<CheckoutStepsState>({
@@ -31,26 +39,26 @@ const CheckoutPage = () => {
   });
 
   const navigate = useNavigate();
-  const { clearCart } = useCartStore();
+  const {clearCart} = useCartStore();
 
   const updateStepsState = (updatedState: Partial<CheckoutStepsState>) => {
-    setStepsState((prevState) => ({ ...prevState, ...updatedState }));
+    setStepsState((prevState) => ({...prevState, ...updatedState}));
   };
 
   const handle1stSubmit = () => {
-    updateStepsState({ first: 'done', second: 'curr', third: 'yet' });
+    updateStepsState({first: 'done', second: 'curr', third: 'yet'});
   };
 
   const handle1stClick = () => {
-    updateStepsState({ first: 'curr', second: 'yet', third: 'yet' });
+    updateStepsState({first: 'curr', second: 'yet', third: 'yet'});
   };
 
   const handle2ndSubmit = () => {
-    updateStepsState({ first: 'done', second: 'done', third: 'curr' });
+    updateStepsState({first: 'done', second: 'done', third: 'curr'});
   };
 
   const handle2ndClick = () => {
-    updateStepsState({ first: 'done', second: 'curr', third: 'yet' });
+    updateStepsState({first: 'done', second: 'curr', third: 'yet'});
   };
 
   const handle3rdSubmit = () => {
@@ -60,7 +68,7 @@ const CheckoutPage = () => {
   };
 
   const handle3rdClick = () => {
-    updateStepsState({ first: 'done', second: 'done', third: 'curr' });
+    updateStepsState({first: 'done', second: 'done', third: 'curr'});
   };
 
   const breadCrumbDatas = [
@@ -88,13 +96,8 @@ const CheckoutPage = () => {
     <CheckoutPagetWrapper>
       <CheckoutSummary />
       <BreadCrumbWrapper>
-        {breadCrumbDatas.map(({ children, onClick, focus, disabled }) => (
-          <BreadCrumb
-            key={uuidv4()}
-            onClick={onClick}
-            focus={focus}
-            disabled={disabled}
-          >
+        {breadCrumbDatas.map(({children, onClick, focus, disabled}, index) => (
+          <BreadCrumb key={index} onClick={onClick} focus={focus} disabled={disabled}>
             {children}
           </BreadCrumb>
         ))}
@@ -122,18 +125,5 @@ const CheckoutPage = () => {
     </CheckoutPagetWrapper>
   );
 };
-
-const CheckoutPagetWrapper = styled.section`
-  padding-bottom: 80px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
-`;
-
-const BreadCrumbWrapper = styled.div`
-  ${mixins.flexBox({ justify: 'start' })}
-  gap: 16px;
-
-  width: 100%;
-  padding: 40px 0 0 80px;
-`;
 
 export default CheckoutPage;

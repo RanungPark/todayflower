@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import {createContext} from 'react';
 
 interface RadioButtonContextType {
   value: string;
@@ -7,5 +7,7 @@ interface RadioButtonContextType {
 
 export const RadioButtonContext = createContext<RadioButtonContextType>({
   value: '',
-  onChange: () => {},
+  onChange: () => {
+    return null;
+  },
 });

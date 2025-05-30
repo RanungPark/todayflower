@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import {useMemo} from 'react';
 import styled from 'styled-components';
 
-import { CheckboxContext } from '@contexts/CheckboxContext';
-import { mixins } from '@styles/Mixin';
+import {CheckboxContext} from '@contexts/CheckboxContext';
+import {mixins} from '@styles/Mixin';
 
 interface CheckboxGroupProps {
   label: string;
@@ -11,21 +11,20 @@ interface CheckboxGroupProps {
   onChange: (values: string[]) => void;
 }
 
-const CheckboxGroup = ({
-  label,
-  children,
-  values,
-  onChange,
-}: CheckboxGroupProps) => {
+const CheckboxGroupWrapper = styled.fieldset`
+  ${mixins.flexBox({direction: 'column', align: 'start'})}
+  gap: 16px;
+`;
+
+const Legend = styled.legend`
+  ${({theme}) => theme.typography.Subtitle}
+  margin-bottom: 16px;
+`;
+
+const CheckboxGroup = ({label, children, values, onChange}: CheckboxGroupProps) => {
   const isChecked = (value: string) => values.includes(value);
 
-  const toggleValue = ({
-    checked,
-    value,
-  }: {
-    checked: boolean;
-    value: string;
-  }) => {
+  const toggleValue = ({checked, value}: {checked: boolean; value: string}) => {
     if (checked) {
       onChange(values.concat(value));
     } else {
@@ -33,29 +32,14 @@ const CheckboxGroup = ({
     }
   };
 
-  const contextValue = useMemo(
-    () => ({ isChecked, toggleValue }),
-    [isChecked, toggleValue],
-  );
+  const contextValue = useMemo(() => ({isChecked, toggleValue}), [isChecked, toggleValue]);
 
   return (
     <CheckboxGroupWrapper>
       <Legend>{label}</Legend>
-      <CheckboxContext.Provider value={contextValue}>
-        {children}
-      </CheckboxContext.Provider>
+      <CheckboxContext.Provider value={contextValue}>{children}</CheckboxContext.Provider>
     </CheckboxGroupWrapper>
   );
 };
-
-const CheckboxGroupWrapper = styled.fieldset`
-  ${mixins.flexBox({ direction: 'column', align: 'start' })}
-  gap: 16px;
-`;
-
-const Legend = styled.legend`
-  ${({ theme }) => theme.typography.Subtitle}
-  margin-bottom: 16px;
-`;
 
 export default CheckboxGroup;

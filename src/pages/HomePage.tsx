@@ -1,12 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import {useNavigate} from 'react-router';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
 import ActionCardAndImageCardList from '@components/lists/ActionCardAndImageCardList';
-import { shopDatas } from '@data/shopDatas';
+import {shopDatas} from '@data/shopDatas';
 import HomeAbout from '@pages/sections/HomeAbout';
 import HomeMain from '@pages/sections/HomeMain';
+
+const HomePageWrapper = styled.main``;
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -21,9 +22,9 @@ const HomePage = () => {
   return (
     <HomePageWrapper>
       <HomeMain />
-      {shopDatas.map(({ children, imgPath, url }, index) => (
+      {shopDatas.map(({children, imgPath, url}, index) => (
         <ActionCardAndImageCardList
-          key={uuidv4()}
+          key={index}
           onClick={handleShopClick(url)}
           index={index}
           buttonText="Shop now"
@@ -39,7 +40,5 @@ const HomePage = () => {
     </HomePageWrapper>
   );
 };
-
-const HomePageWrapper = styled.main``;
 
 export default HomePage;

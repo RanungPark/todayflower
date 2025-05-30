@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
-import { ReactComponent as WChevronRight } from '@assets/icons/wght400/WChevronRight.svg';
-import { mixins } from '@styles/Mixin';
+import WChevronRight from '@assets/icons/wght400/WChevronRight.svg';
+import {mixins} from '@styles/Mixin';
 interface BreadCrumbProps {
   children: string;
   onClick: (e: React.MouseEvent) => void;
@@ -11,55 +11,41 @@ interface BreadCrumbProps {
 
 type BreadCrumbWrapperProps = Pick<BreadCrumbProps, 'focus' | 'disabled'>;
 
-const BreadCrumb = ({
-  children,
-  onClick,
-  focus = true,
-  disabled = false,
-}: BreadCrumbProps) => {
-  return (
-    <BreadCrumbWrapper onClick={onClick} focus={focus} disabled={disabled}>
-      {children}
-      <WChevronRight aria-label="chevron right" />
-    </BreadCrumbWrapper>
-  );
-};
-
 const baseStyle = css`
   cursor: pointer;
 
   &:active {
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({theme}) => theme.colors.black};
   }
 
   &:active path {
-    fill: ${({ theme }) => theme.colors.black};
+    fill: ${({theme}) => theme.colors.black};
   }
 `;
 
 const focusStyle = css`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({theme}) => theme.colors.black};
 
   path {
-    fill: ${({ theme }) => theme.colors.black};
+    fill: ${({theme}) => theme.colors.black};
   }
 `;
 
 const notFocusStyle = css`
-  color: ${({ theme }) => theme.colors.darkgray};
+  color: ${({theme}) => theme.colors.darkgray};
 
   path {
-    fill: ${({ theme }) => theme.colors.darkgray};
+    fill: ${({theme}) => theme.colors.darkgray};
   }
 `;
 
 const disabledStyle = css`
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({theme}) => theme.colors.gray};
 
   pointer-events: none;
 
   path {
-    fill: ${({ theme }) => theme.colors.gray};
+    fill: ${({theme}) => theme.colors.gray};
   }
 `;
 
@@ -67,11 +53,20 @@ const BreadCrumbWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'focus',
 })<BreadCrumbWrapperProps>`
   ${mixins.flexBox({})};
-  ${({ theme }) => theme.typography.Overline}
-  ${({ focus }) => (focus ? focusStyle : notFocusStyle)}
-  ${({ disabled }) => (disabled ? disabledStyle : baseStyle)}
+  ${({theme}) => theme.typography.Overline}
+  ${({focus}) => (focus ? focusStyle : notFocusStyle)}
+  ${({disabled}) => (disabled ? disabledStyle : baseStyle)}
   font-weight: 700;
   text-transform: uppercase;
 `;
+
+const BreadCrumb = ({children, onClick, focus = true, disabled = false}: BreadCrumbProps) => {
+  return (
+    <BreadCrumbWrapper onClick={onClick} focus={focus} disabled={disabled}>
+      {children}
+      <WChevronRight aria-label="chevron right" />
+    </BreadCrumbWrapper>
+  );
+};
 
 export default BreadCrumb;

@@ -1,13 +1,6 @@
-import {
-  REG_DATE,
-  REG_EMAIL,
-  REG_NAME,
-  REG_NUMBER,
-  REG_PHONE,
-  REG_STRING_NUMBER,
-} from '@constants/reg';
+import {REG_DATE, REG_EMAIL, REG_NAME, REG_NUMBER, REG_PHONE, REG_STRING_NUMBER} from '@constants/reg';
 
-export type InputTextsType = {
+export interface InputTextsType {
   component: 'textField' | 'datePicker' | 'selectBox';
   registerValue: string;
   required?: string;
@@ -17,22 +10,9 @@ export type InputTextsType = {
     message: string;
   };
   options?: string[];
-};
+}
 
-const checkoutDropDownDatas = [
-  '8AM',
-  '9AM',
-  '10AM',
-  '12PM',
-  '1PM',
-  '2PM',
-  '3PM',
-  '4PM',
-  '5PM',
-  '6PM',
-  '7PM',
-  '8PM',
-];
+const checkoutDropDownDatas = ['8AM', '9AM', '10AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
 
 export const checkout1stStepDatas: InputTextsType[] = [
   {

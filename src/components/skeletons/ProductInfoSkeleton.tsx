@@ -1,39 +1,21 @@
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 
-import { LoadingAnimation, LongLoadingAnimation } from '@styles/animation';
-import { mixins } from '@styles/Mixin';
+import {LoadingAnimation, LongLoadingAnimation} from '@styles/animation';
+import {mixins} from '@styles/Mixin';
 
 import SecondaryCardSkeleton from './SecondaryCardSkeleton';
 
-const ProductInfoSkeleton = () => {
-  return (
-    <ProductInfoSkeletonWrapper>
-      <TitleSkeleton />
-      <InfoSkeleton />
-      <SubSkeleton />
-      <StepperSkeleton />
-      <SecondaryCardSkeletonWrapper>
-        {Array.from({ length: 5 }).map(() => (
-          <SecondaryCardSkeleton key={uuidv4()} />
-        ))}
-      </SecondaryCardSkeletonWrapper>
-      <ButtonSkeleton />
-    </ProductInfoSkeletonWrapper>
-  );
-};
-
 const ProductInfoSkeletonWrapper = styled.div`
-  ${mixins.flexBox({ direction: 'column', align: 'start' })};
+  ${mixins.flexBox({direction: 'column', align: 'start'})};
   gap: 24px;
 
   width: 100%;
   padding: 40px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black};
+  border-bottom: 1px solid ${({theme}) => theme.colors.black};
 `;
 
 const SecondaryCardSkeletonWrapper = styled.div`
-  ${mixins.flexBox({ justify: 'space-between' })}
+  ${mixins.flexBox({justify: 'space-between'})}
   width: 100%;
 `;
 
@@ -45,7 +27,7 @@ const TitleSkeleton = styled.p`
   width: 600px;
   height: 50px;
 
-  background-color: ${({ theme }) => theme.colors.extralight};
+  background-color: ${({theme}) => theme.colors.extralight};
 `;
 
 const InfoSkeleton = styled.p`
@@ -56,7 +38,7 @@ const InfoSkeleton = styled.p`
   width: 700px;
   height: 80px;
 
-  background-color: ${({ theme }) => theme.colors.extralight};
+  background-color: ${({theme}) => theme.colors.extralight};
 `;
 
 const SubSkeleton = styled.p`
@@ -67,7 +49,7 @@ const SubSkeleton = styled.p`
   width: 300px;
   height: 60px;
 
-  background-color: ${({ theme }) => theme.colors.extralight};
+  background-color: ${({theme}) => theme.colors.extralight};
 `;
 
 const StepperSkeleton = styled.p`
@@ -78,7 +60,7 @@ const StepperSkeleton = styled.p`
   width: 250px;
   height: 20px;
 
-  background-color: ${({ theme }) => theme.colors.extralight};
+  background-color: ${({theme}) => theme.colors.extralight};
 `;
 
 const ButtonSkeleton = styled.p`
@@ -89,7 +71,24 @@ const ButtonSkeleton = styled.p`
   width: 700px;
   height: 60px;
 
-  background-color: ${({ theme }) => theme.colors.extralight};
+  background-color: ${({theme}) => theme.colors.extralight};
 `;
+
+const ProductInfoSkeleton = () => {
+  return (
+    <ProductInfoSkeletonWrapper>
+      <TitleSkeleton />
+      <InfoSkeleton />
+      <SubSkeleton />
+      <StepperSkeleton />
+      <SecondaryCardSkeletonWrapper>
+        {Array.from({length: 5}).map((_, index) => (
+          <SecondaryCardSkeleton key={index} />
+        ))}
+      </SecondaryCardSkeletonWrapper>
+      <ButtonSkeleton />
+    </ProductInfoSkeletonWrapper>
+  );
+};
 
 export default ProductInfoSkeleton;
