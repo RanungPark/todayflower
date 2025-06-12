@@ -1,7 +1,0 @@
-[[redirects]]
-  from = "/mockServiceWorker.js"
-  to = "/public/mockServiceWorker.js"
-  status = 200
-
-[build]
-  command = "bash -c 'source .env && npm run build'"
