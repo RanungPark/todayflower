@@ -11,7 +11,8 @@
       "@data/*": ["src/data/*"],
       "@hooks/*": ["src/hooks/*"],
       "@mocks/*": ["src/mocks/*"],
-      "@pages/*": ["src/pages/*"],
+      "@remote/*": ["src/remote/*"],
+      "@app/*": ["src/app/*"],
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]
