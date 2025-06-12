@@ -2,8 +2,10 @@ import {create} from 'zustand';
 import {devtools, persist} from 'zustand/middleware';
 
 export interface User {
-  id: number;
-  username: string;
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL?: string;
 }
 
 export interface UserState {

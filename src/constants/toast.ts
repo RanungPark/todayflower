@@ -42,6 +42,12 @@ export const loginFail = () => {
   });
 };
 
+export const zeroCart = () => {
+  toast.error(`상품이 0개는 담을수 없어요!`, {
+    duration: 3000,
+  });
+};
+
 export const addToCart = (productName: string) => {
   toast.success(`${productName}이(가) 장바구니에 담겼어요!`, {
     icon: '🛒',

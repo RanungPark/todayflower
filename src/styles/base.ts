@@ -7,7 +7,6 @@ const base = css`
   body {
     margin: 0;
     color: ${({theme}) => theme.colors.black};
-    background-color: ${({theme}) => theme.colors.white};
   }
   button {
     cursor: pointer;

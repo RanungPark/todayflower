@@ -1,5 +1,6 @@
 export const chooseUsDatas = [
   {
+    id: 1,
     title: 'Stylish bouquets by florists',
     children: `플로리스트 스튜디오에서는 전문 플로리스트가 가장 신선하고 최고 품질의
           재료만을 사용하여 가장 우아하고 세련된 부케를 제작합니다. 저희는 최신
@@ -8,18 +9,21 @@ export const chooseUsDatas = [
           하루를 더욱 빛나게 해드리겠습니다.`,
   },
   {
+    id: 2,
     title: 'On-time delivery',
     children: `정시 꽃 배달 서비스로 한순간도 놓치지 마세요. 택배 기사가 박스 없이
           직접 꽃다발을 배달하여 완벽한 상태로 도착할 수 있도록 합니다.
           정성스러운 선물을 안정적으로 배달해 드립니다.`,
   },
   {
+    id: 3,
     title: 'Safe payment',
     children: `결제 정보를 보호하기 위해 업계 표준 보안 조치를 사용하므로 안심하고
           주문할 수 있습니다. 거래가 안전하고 번거롭지 않으므로 안심하고 쇼핑할
           수 있습니다.`,
   },
   {
+    id: 4,
     title: 'Subscription by your needs',
     children: `특정 요구사항에 맞춘 구독 서비스를 이용하면 아름다운 꽃다발을
           정기적으로 집 앞까지 배달해 주는 편리함을 누릴 수 있습니다. 이 유연한
@@ -30,7 +34,7 @@ export const chooseUsDatas = [
 ];
 
 export const aboutUsData = {
-  title: 'Kyiv LuxeBouquets',
+  title: '오늘의 꽃',
   children: `저희는 독특한 꽃다발을 전문적으로 디자인하고 배달하는 현대적인 로컬
           플로럴 스튜디오입니다. 저희 스튜디오에는 각 룩을 신중하게 선택하는
           최고의 플로리스트가 있으며, 다양한 꽃을 재배하기 위해 농장과 직접

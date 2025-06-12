@@ -1,8 +1,9 @@
 import {ThemeProvider} from 'styled-components';
-import {theme} from '../styles/theme';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
-import GlobalStyle from '../styles/GlobalStyles';
+
+import {theme} from '@styles/theme';
+import GlobalStyles from '@styles/GlobalStyles';
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ const Provider = ({children}: ProviderProps) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
+      <GlobalStyles />
       <QueryClientProvider client={queryClient}>
         {children}
         {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}

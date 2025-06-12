@@ -1,6 +1,8 @@
-import Provider from '@contexts/Provider';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import Provider from '@contexts/Provider';
+
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

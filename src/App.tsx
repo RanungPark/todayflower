@@ -1,30 +1,39 @@
-// import {BrowserRouter, Route, Routes} from 'react-router-dom';
-// import Layout from '@pages/Layout';
-// import HomePage from '@pages/HomePage';
-// import CategoryPage from '@pages/CategoryPage';
-// import LoginPage from '@pages/LoginPage';
-// import NotFoundPage from '@pages/NotFoundPage';
-// import CheckoutPage from '@pages/CheckoutPage';
-// import ProductsPage from '@pages/ProductsPage';
 import '@todayflower-public/ui/style.css';
 
-import {Button} from '@todayflower-public/ui';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
+import CategoryPage from '@app/categories';
+import CheckoutPage from '@app/checkout';
+import HomePage from '@app/home';
+import Layout from '@app/layout';
+import LoginPage from '@app/login';
+import MockPage from '@app/mock';
+import NotFoundPage from '@app/notFound';
+import AuthGuard from '@components/AuthGuard';
+import ProductsPage from '@app/categories/products';
 
 function App() {
   return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path={'/'} element={<Layout />}>
-    //       <Route path="" element={<HomePage />} />
-    //       <Route path="login" element={<LoginPage />} />
-    //       <Route path="categories/:categoryName" element={<CategoryPage />} />
-    //       <Route path="categories/:categoryName/products/:productId" element={<ProductsPage />} />
-    //       <Route path="checkout" element={<CheckoutPage />} />
-    //       <Route path="/*" element={<NotFoundPage />} />
-    //     </Route>
-    //   </Routes>
-    // </BrowserRouter>
-    <Button>hello</Button>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={'/'}
+          element={
+            <AuthGuard>
+              <Layout />
+            </AuthGuard>
+          }
+        >
+          <Route path="" element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="categories/:categoryName" element={<CategoryPage />} />
+          <Route path="categories/:categoryName/products/:productId" element={<ProductsPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="mock" element={<MockPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

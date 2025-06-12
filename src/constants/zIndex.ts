@@ -4,4 +4,4 @@ export const zIndex = {
   cart: 200,
   textField: 1,
   datePicker: 2,
-};
+} as const;
