@@ -1,12 +1,4 @@
-export type Color =
-  | 'white'
-  | 'extralight'
-  | 'lightgray'
-  | 'gray'
-  | 'darkgray'
-  | 'black'
-  | 'success'
-  | 'error';
+export type Color = 'white' | 'extralight' | 'lightgray' | 'gray' | 'darkgray' | 'black' | 'success' | 'error';
 
 export type Typography =
   | 'Heading1'

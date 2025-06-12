@@ -1,22 +1,40 @@
-import { Toaster } from 'react-hot-toast';
-import { Outlet } from 'react-router';
+import '@todayflower-public/ui/style.css';
 
-import Footer from '@components/publics/Footer';
-import Header from '@components/publics/Header';
-import Layout from '@components/publics/Layout';
-import useScrollToTop from '@hooks/useScrollToTop';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-const App = () => {
-  useScrollToTop();
+import CategoryPage from '@app/categories';
+import CheckoutPage from '@app/checkout';
+import HomePage from '@app/home';
+import Layout from '@app/layout';
+import LoginPage from '@app/login';
+import MockPage from '@app/mock';
+import NotFoundPage from '@app/notFound';
+import AuthGuard from '@components/AuthGuard';
+import ProductsPage from '@app/categories/products';
 
+function App() {
   return (
-    <Layout>
-      <Header />
-      <Outlet />
-      <Footer />
-      <Toaster position="top-center" reverseOrder={false} />
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={'/'}
+          element={
+            <AuthGuard>
+              <Layout />
+            </AuthGuard>
+          }
+        >
+          <Route path="" element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="categories/:categoryName" element={<CategoryPage />} />
+          <Route path="categories/:categoryName/products/:productId" element={<ProductsPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="mock" element={<MockPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;

@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import {create} from 'zustand';
+import {devtools, persist} from 'zustand/middleware';
 
 export interface CartItem {
   id: number;
@@ -25,9 +25,7 @@ export const useCartStore = create<CartState>()(
         carts: [],
         addItem: (item) =>
           set((state) => {
-            const existingItem = state.carts.find(
-              (cart) => cart.key === item.key,
-            );
+            const existingItem = state.carts.find((cart) => cart.key === item.key);
             if (existingItem) {
               return {
                 carts: state.carts.map((cart) => {
@@ -43,15 +41,15 @@ export const useCartStore = create<CartState>()(
                 }),
               };
             }
-            return { carts: [...state.carts, { ...item }] };
+            return {carts: [...state.carts, {...item}]};
           }),
         removeItem: (key) =>
           set((state) => ({
             carts: state.carts.filter((cart) => cart.key !== key),
           })),
-        clearCart: () => set({ carts: [] }),
+        clearCart: () => set({carts: []}),
       }),
-      { name: 'cartStore', getStorage: () => sessionStorage },
+      {name: 'cartStore', getStorage: () => sessionStorage},
     ),
   ),
 );

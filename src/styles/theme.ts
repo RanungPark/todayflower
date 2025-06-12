@@ -1,16 +1,16 @@
-import { Typography, Weight } from 'src/@types/theme';
+import type {Typography, Weight} from 'src/@types/theme';
 
 type transform = 'uppercase' | 'lowercase' | 'none';
 
 export const colors = {
-  white: '#ffffff',
-  extralight: '#f5f5f7',
-  lightgray: '#d2d2d7',
-  gray: '#757580',
-  darkgray: '#56565C',
-  black: '#121212',
-  success: '#2E8564',
-  error: '#EB170A',
+  white: '#ffffff', //adaptiveGrey0
+  extralight: '#f2f4f6', //adaptiveGrey100
+  lightgray: '#d1d6db', //adaptiveGrey300
+  gray: '#8b95a1', //adaptiveGrey500
+  darkgray: '#4e5968', //adaptiveGrey700
+  black: '#191f28', //adaptiveGrey900
+  success: '#02a262', //adaptiveGreen600
+  error: '#e42939', //adaptiveRed600
 };
 
 const weightScheme: Record<Weight, number> = {

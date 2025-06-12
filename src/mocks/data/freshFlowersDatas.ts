@@ -1,5 +1,5 @@
-import { fetchImgURL } from '@utils/img';
-import { ProductType, ProductBgType } from 'src/@types/product';
+import {fetchImgURL} from '@utils/img';
+import type {ProductType, ProductBgType} from 'src/@types/product';
 
 export const freshFlowersBg: ProductBgType = {
   title: 'Fresh Flowers',

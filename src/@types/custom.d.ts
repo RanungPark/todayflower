@@ -1,13 +1,9 @@
-declare module '*.svg' {
-  import React = require('react');
-
-  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-  const src: string;
-  export default src;
+declare module '*.module.css' {
+  const classes: Record<string, string>;
+  export default classes;
 }
 
-declare module '*.png';
-declare module '*.jpg';
-declare module '*.jpeg';
-declare module '*.gif';
-declare module '*.woff2';
+declare module '*.svg' {
+  const content: string;
+  export default content;
+}

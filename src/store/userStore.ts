@@ -1,9 +1,11 @@
-import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import {create} from 'zustand';
+import {devtools, persist} from 'zustand/middleware';
 
 export interface User {
-  id: number;
-  username: string;
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL?: string;
 }
 
 export interface UserState {
@@ -22,13 +24,11 @@ export const useUserStore = create<UserState>()(
         isLoggedIn: false,
         user: null,
         subscribe: false,
-        login: (userData) =>
-          set((state) => ({ ...state, isLoggedIn: true, user: userData })),
-        logout: () =>
-          set((state) => ({ ...state, isLoggedIn: false, user: null })),
-        setSubscribe: (subscribe) => set((state) => ({ ...state, subscribe })),
+        login: (userData) => set((state) => ({...state, isLoggedIn: true, user: userData})),
+        logout: () => set((state) => ({...state, isLoggedIn: false, user: null})),
+        setSubscribe: (subscribe) => set((state) => ({...state, subscribe})),
       }),
-      { name: 'userStore', getStorage: () => sessionStorage },
+      {name: 'userStore', getStorage: () => sessionStorage},
     ),
   ),
 );
