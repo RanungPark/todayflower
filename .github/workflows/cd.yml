@@ -1,0 +1,60 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: env setting
+        run: |
+          echo "VITE_API_KEY=${{ secrets.VITE_API_KEY }}" >> .env
+          echo "VITE_AUTH_DOMAIN=${{ secrets.VITE_AUTH_DOMAIN }}" >> .env
+          echo "VITE_PROJECT_ID=${{ secrets.VITE_PROJECT_ID }}" >> .env
+          echo "VITE_STORAGE_BUCKET=${{ secrets.VITE_STORAGE_BUCKET }}" >> .env
+          echo "VITE_MESSAGEING_SENDER_ID=${{ secrets.VITE_MESSAGEING_SENDER_ID }}" >> .env
+          echo "VITE_APP_ID=${{ secrets.VITE_APP_ID }}" >> .env
+        env:
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+          VITE_AUTH_DOMAIN: ${{ secrets.VITE_AUTH_DOMAIN }}
+          VITE_PROJECT_ID: ${{ secrets.VITE_PROJECT_ID }}
+          VITE_STORAGE_BUCKET: ${{ secrets.VITE_STORAGE_BUCKET }}
+          VITE_MESSAGEING_SENDER_ID: ${{ secrets.VITE_MESSAGEING_SENDER_ID }}
+          VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
+
+      - name: Set up Docker credentials
+        run: echo "${{ secrets.GCP_SA_KEY }}" > "${HOME}/gcp-key.json"
+
+      - name: Authenticate with GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker to use Artifact Registry
+        run: |
+          gcloud auth configure-docker asia-northeast1-docker.pkg.dev
+
+      - name: Build Docker image
+        run: |
+          docker build --platform=linux/amd64 \
+            -t asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REGISTRY_NAME }}/${{ secrets.GCP_CLOUD_RUN_NAME }}:latest .
+
+      - name: Push Docker image to Artifact Registry
+        run: |
+          docker push asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REGISTRY_NAME }}/${{ secrets.GCP_CLOUD_RUN_NAME }}:latest
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ secrets.GCP_CLOUD_RUN_NAME }} \
+            --image asia-northeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REGISTRY_NAME }}/${{ secrets.GCP_CLOUD_RUN_NAME }}:latest \
+            --region ${{ secrets.GCP_CLOUD_RUN_REGION }} \
+            --platform managed \
+            --allow-unauthenticated
