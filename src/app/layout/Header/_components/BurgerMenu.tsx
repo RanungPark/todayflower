@@ -10,6 +10,7 @@ import {IconButton, TextButton} from '@todayflower-public/ui';
 
 import MenuButton from './MenuButton';
 import SNSIconButtons from './SNSIconButtons';
+import {useUserStore} from '@store/userStore';
 
 interface BurgerMenuProps {
   open: boolean;
@@ -70,6 +71,7 @@ const SMSIconButtonWrapper = styled.div`
 
 const BurgerMenu = ({open, setOpen}: BurgerMenuProps) => {
   const handleClose = () => setOpen(!open);
+  const {user} = useUserStore();
 
   return (
     <>
@@ -80,7 +82,7 @@ const BurgerMenu = ({open, setOpen}: BurgerMenuProps) => {
         </BurgerMenuCloseButtonWrapper>
         {menuDatas.map(({id, to, children}) => (
           <MenuButton to={to} onClick={handleClose} key={id}>
-            {children}
+            {to === '/auth' ? (user === null ? 'Login' : 'Logout') : children}
           </MenuButton>
         ))}
         <TextButtonList>

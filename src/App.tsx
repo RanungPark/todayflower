@@ -6,11 +6,11 @@ import CategoryPage from '@app/categories';
 import CheckoutPage from '@app/checkout';
 import HomePage from '@app/home';
 import Layout from '@app/layout';
-import LoginPage from '@app/login';
 import MockPage from '@app/mock';
 import NotFoundPage from '@app/notFound';
 import AuthGuard from '@components/AuthGuard';
 import ProductsPage from '@app/categories/products';
+import AuthPage from '@app/auth';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           }
         >
           <Route path="" element={<HomePage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route path="auth" element={<AuthPage />} />
           <Route path="categories/:categoryName" element={<CategoryPage />} />
           <Route path="categories/:categoryName/products/:productId" element={<ProductsPage />} />
           <Route path="checkout" element={<CheckoutPage />} />

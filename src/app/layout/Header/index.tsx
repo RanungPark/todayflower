@@ -9,11 +9,13 @@ import WMenu from '@assets/icons/wght400/WMenu.svg';
 
 import BurgerMenu from './_components/BurgerMenu';
 import Cart from './_components/Cart';
+import {useUserStore} from '@store/userStore';
 
 const Header = () => {
   const [burgerOpen, setBurgerOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const isMatched = useResponsive(MAX_TABLET_WIDTH);
+  const {user} = useUserStore();
 
   useEffect(() => {
     if (!isMatched) {
@@ -65,9 +67,9 @@ const Header = () => {
           !isMatched && (
             <NavButton
               onClick={() => {
-                navigate('/login');
+                navigate('/auth');
               }}
-              nav={<NavButton.TextButton>Sign in</NavButton.TextButton>}
+              nav={<NavButton.TextButton>{user === null ? 'Login' : 'Logout'}</NavButton.TextButton>}
               isBorderLeft
             />
           )

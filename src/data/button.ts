@@ -15,8 +15,8 @@ export const SNSIconDatas = [
 export const menuDatas = [
   {
     id: 1,
-    to: '/login',
-    children: 'Sign in',
+    to: '/auth',
+    children: '',
   },
   {
     id: 2,
