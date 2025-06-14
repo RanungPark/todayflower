@@ -7,7 +7,7 @@ import {useUserStore} from '@store/userStore';
 import LogoutButton from './_components/LogoutButton';
 import LoginButton from './_components/LoginButton';
 
-const LoginPageWrapper = styled.div`
+const AuthPageWrapper = styled.div`
   ${mixins.flexBox({
     direction: 'column',
     justify: 'space-evenly',
@@ -18,6 +18,7 @@ const LoginPageWrapper = styled.div`
   border-bottom: 1px solid ${({theme}) => theme.colors.black};
   border-right: 1px solid ${({theme}) => theme.colors.black};
   border-left: 1px solid ${({theme}) => theme.colors.black};
+  white-space: pre-line;
 `;
 
 const Wrppaer = styled.div`
@@ -31,15 +32,19 @@ const Wrppaer = styled.div`
   }
 `;
 
-const LoginPage = () => {
+const AuthPage = () => {
   const {user} = useUserStore();
 
   return (
-    <LoginPageWrapper>
-      <Wrppaer className="typography-h3">안녕하세요! 오늘의 꽃에 오신 것을 환영합니다.</Wrppaer>
+    <AuthPageWrapper>
+      <Wrppaer className="typography-h3">
+        {user === null
+          ? '안녕하세요! \n오늘의 꽃에 오신 것을 환영합니다.'
+          : '정말 떠나시겠어요? \n오늘의 꽃은 아직 활짝 피어 있어요.'}
+      </Wrppaer>
       <Wrppaer>{user === null ? <LoginButton /> : <LogoutButton />}</Wrppaer>
-    </LoginPageWrapper>
+    </AuthPageWrapper>
   );
 };
 
-export default LoginPage;
+export default AuthPage;
