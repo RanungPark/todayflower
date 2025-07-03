@@ -1,4 +1,4 @@
-FROM node:20-alpine3.16 as build
+FROM node:20-alpine3.16 AS build
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY . .
 RUN pnpm run build
 
 CMD ["node"]
-FROM nginx:stable-alpine as start
+FROM nginx:stable-alpine AS start
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
