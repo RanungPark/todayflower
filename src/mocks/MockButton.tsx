@@ -4,7 +4,6 @@ import {Button} from '@todayflower-public/ui';
 import {driedFlowersBg, driedFlowersProducts} from '@mocks/data/driedFlowersDatas';
 import {freshFlowersBg, freshFlowersProducts} from '@mocks/data/freshFlowersDatas';
 import {livePlantsBg, livePlantsProducts} from '@mocks/data/livePlantsDatas';
-import {designerVasesBg, designerVasesProducts} from '@mocks/data/designerVasesDatas';
 import {aromaCandlesBg, aromaCandlesProducts} from '@mocks/data/aromaCandlesDatas';
 import {freshenersBg, freshenersProducts} from '@mocks/data/freshenersDatas';
 import {fireStore} from '@remote/firebase';
@@ -29,11 +28,11 @@ function ProductMockButton() {
         ...livePlantsBg,
         products: livePlantsProducts,
       },
-      {
-        id: 'designer_vases',
-        ...designerVasesBg,
-        products: designerVasesProducts,
-      },
+      // {
+      //   id: 'designer_vases',
+      //   ...designerVasesBg,
+      //   products: designerVasesProducts,
+      // },
       {
         id: 'aroma_candles',
         ...aromaCandlesBg,
