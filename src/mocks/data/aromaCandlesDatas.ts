@@ -5,7 +5,7 @@ export const aromaCandlesBg: ProductBgType = {
   title: 'Aroma Candles',
   imgPath: fetchImgURL({
     category: 'aroma_candles',
-    name: 'aroma_candles_bg',
+    name: 'aroma_candles_rep',
   }),
 };
 

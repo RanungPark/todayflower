@@ -5,7 +5,7 @@ export const freshFlowersBg: ProductBgType = {
   title: 'Fresh Flowers',
   imgPath: fetchImgURL({
     category: 'fresh_flowers',
-    name: 'fresh_flowers_bg',
+    name: 'fresh_flowers_rep',
   }),
 };
 

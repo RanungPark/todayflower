@@ -5,7 +5,7 @@ export const livePlantsBg: ProductBgType = {
   title: 'Live Plants',
   imgPath: fetchImgURL({
     category: 'live_plants',
-    name: 'live_plant_bg',
+    name: 'live_plant_rep',
   }),
 };
 
