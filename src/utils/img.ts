@@ -1,6 +1,6 @@
 type CategoryType =
   | 'aroma_candles'
-  | 'designer_vases'
+  // | 'designer_vases'
   | 'dried_flowers'
   | 'fresh_flowers'
   | 'fresheners'
@@ -41,15 +41,15 @@ type LivePlantsType =
   | 'the_fiddle_leaf_fig'
   | 'the_snake_plant';
 
-type DesignerVasesType =
-  | 'bernadotte_vase'
-  | 'botanica_vase'
-  | 'ceramic_vase'
-  | 'clear_vase'
-  | 'designer_vases_bg'
-  | 'designer_vases_rep'
-  | 'pot_vase'
-  | 'slim_vase';
+// type DesignerVasesType =
+//   | 'bernadotte_vase'
+//   | 'botanica_vase'
+//   | 'ceramic_vase'
+//   | 'clear_vase'
+//   | 'designer_vases_bg'
+//   | 'designer_vases_rep'
+//   | 'pot_vase'
+//   | 'slim_vase';
 
 type AromaCandlesType =
   | 'aroma_candles_bg'
@@ -75,7 +75,7 @@ type OthersType = 'home_rep';
 
 interface CategoryMapping {
   aroma_candles: AromaCandlesType;
-  designer_vases: DesignerVasesType;
+  // designer_vases: DesignerVasesType;
   dried_flowers: DriedFlowersType;
   fresh_flowers: FreshFlowersType;
   fresheners: FreshenersType;
@@ -106,7 +106,7 @@ interface ImgOptimization {
 }
 
 export const fetchImgURL = <T extends CategoryType>({category, name}: FetchImgURL<T>) => {
-  return `https://todayflower.imgix.net/${category}/${name}.jpg`;
+  return `https://todayflower.imgix.net/${category}/${name}.webp`;
 };
 
 export const imgOptimization = ({width, height, fit, crop, auto = ['compress'], q}: ImgOptimization) => {

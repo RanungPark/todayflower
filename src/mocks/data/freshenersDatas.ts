@@ -5,7 +5,7 @@ export const freshenersBg: ProductBgType = {
   title: 'Fresheners',
   imgPath: fetchImgURL({
     category: 'fresheners',
-    name: 'fresheners_bg',
+    name: 'fresheners_rep',
   }),
 };
 

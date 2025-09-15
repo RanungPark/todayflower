@@ -41,19 +41,19 @@ export const shopDatas: ShopDatas[] = [
       }),
     url: `/categories/live_plants`,
   },
+  // {
+  //   id: 4,
+  //   children: 'Designer Vases',
+  //   src:
+  //     fetchImgURL({category: 'designer_vases', name: 'designer_vases_rep'}) +
+  //     imgOptimization({
+  //       width: 400,
+  //       height: 400,
+  //     }),
+  //   url: `/categories/designer_vases`,
+  // },
   {
     id: 4,
-    children: 'Designer Vases',
-    src:
-      fetchImgURL({category: 'designer_vases', name: 'designer_vases_rep'}) +
-      imgOptimization({
-        width: 400,
-        height: 400,
-      }),
-    url: `/categories/designer_vases`,
-  },
-  {
-    id: 5,
     children: 'Aroma Candels',
     src:
       fetchImgURL({category: 'aroma_candles', name: 'aroma_candles_rep'}) +
@@ -64,7 +64,7 @@ export const shopDatas: ShopDatas[] = [
     url: `/categories/aroma_candles`,
   },
   {
-    id: 6,
+    id: 5,
     children: 'Fresheners',
     src:
       fetchImgURL({category: 'fresheners', name: 'fresheners_rep'}) +

@@ -5,7 +5,7 @@ export const driedFlowersBg: ProductBgType = {
   title: 'Dried Flowers',
   imgPath: fetchImgURL({
     category: 'dried_flowers',
-    name: 'dried_flowers_bg',
+    name: 'dried_flowers_rep',
   }),
 };
 
